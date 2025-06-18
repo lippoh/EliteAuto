@@ -543,6 +543,19 @@
 
       /* ====== Mobile-Specific Enhancements ====== */
   @media (max-width: 768px) {
+        body {
+      transform: scale(0.95);
+      transform-origin: top center;
+      width: 105%;
+      overflow-x: hidden;
+    }
+    
+    /* Adjust container widths to compensate for zoom */
+    header, section {
+      width: 95%;
+      margin-left: auto;
+      margin-right: auto;
+    }
     /* Hero Section Adjustments */
     #hero {
       padding: 40px 6vw !important;
@@ -714,7 +727,7 @@
       font-size: 0.9rem;
     }
   }
-  
+
   </style>
 </head>
 <body>
