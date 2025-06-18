@@ -272,9 +272,9 @@
       background: var(--gold);
     }
     #hero {
-      background-image: url('hero-screen.png');
+      background-image: url('content/hero-screen.png');
       background-size: cover;
-      background-position: center;
+      background-position: calc(50% + 2px) center;
       background-repeat: no-repeat;
       position: relative;
     }
@@ -325,7 +325,7 @@
     }
     .car-display {
       width: 100%;
-      height: 300px;
+      height: 380px;
       background: var(--charcoal);
       border-radius: 16px;
       margin-bottom: 20px;
@@ -548,11 +548,26 @@
   </div>
   
   <div class="smooth-scroll">
-    <header id="hero" style="margin-top: 40px;">
+    <header id="hero" style="margin-top: 40px; background-image: url('content/hero-screen.png');">
       <div class="floating-shapes" id="floatingShapes"></div>
-      <div class="parallax-bg" style="background-image: url('content/eea3155b-cb0d-4ee8-b4cc-6b506af5c95b.png');"></div>
+      <div class="parallax-bg" style="background-image: url('content/hero-screen.png');"></div>
       <h1>Luxury Cars. Smarter Prices. Delivered from Dubai.</h1>
-      <div class="subheadline-hero">We connect serious buyers in Europe with real savings on high-performance cars — directly from the UAE.</div>
+      <div class="subheadline-hero" id="typed-text" style="height: 80px; overflow: hidden;"></div>
+      <script>
+        function typeWriter(text, element, speed = 15, index = 0) {
+          if (index < text.length) {
+        element.innerHTML += text.charAt(index);
+        index++;
+        setTimeout(() => typeWriter(text, element, speed, index), speed);
+          }
+        }
+
+        window.addEventListener('load', function() {
+          const text = "We connect serious buyers in Europe with real savings on high-performance cars — directly from the UAE.";
+          const element = document.getElementById('typed-text');
+          setTimeout(() => typeWriter(text, element), 500); // Start after 500ms delay
+        });
+      </script>
       <div style="margin-top: 80px;"></div>
         <div class="cta-button-group" style="opacity: 0; transform: translateY(30px); transition: opacity 0.8s, transform 0.8s;"></div>
           <a href="#inquiry" class="cta-btn">Start Inquiry <i class="fas fa-arrow-right" style="margin-left: 10px;"></i></a>
@@ -572,7 +587,7 @@
       
     <div class="price-comparison">
       <div class="price-display">
-        <span id="modelName">Mercedes G63</span>
+        <span id="modelName">BMW M5</span>
         <div>
           <span id="dubaiPrice">€85,000</span> vs 
           <span id="europePrice">€145,000</span>
@@ -580,24 +595,24 @@
         </div>
       </div>
       <div class="model-selector">
-        <div class="model-option active" data-model="g_wagon_g63" data-dubai="85000" data-europe="145000">G-Wagon G63</div>
+        <div class="model-option active" data-model="bmw_m5" data-dubai="55000" data-europe="95000">BMW M5</div>
         <div class="model-option" data-model="porsche_cayenne" data-dubai="45000" data-europe="75000">Porsche Cayenne</div>
-        <div class="model-option" data-model="bmw_m5" data-dubai="55000" data-europe="95000">BMW M5</div>
+        <div class="model-option" data-model="g_wagon_g63" data-dubai="85000" data-europe="145000">G-Wagon G63</div>
         <div class="model-option" data-model="range_rover" data-dubai="65000" data-europe="110000">Range Rover</div>
       </div>
     </div>
     
     <div class="model-visualizer">
       <div class="car-display">
-        <img src="content/g_wagon_g63.jpg" alt="Mercedes G-Wagon G63" class="car-display-image active" style="width: 100%; height: 100%; object-fit: cover; border-radius: 14px;">
+        <img src="content/bmw_m5.jpg" alt="BMW M5" class="car-display-image active" style="width: 100%; height: 100%; object-fit: cover; border-radius: 14px;">
         <img src="content/porsche_cayenne.jpg" alt="Porsche Cayenne" class="car-display-image" style="width: 100%; height: 100%; object-fit: cover; border-radius: 14px; display: none;">
-        <img src="content/bmw_m5.jpg" alt="BMW M5" class="car-display-image" style="width: 100%; height: 100%; object-fit: cover; border-radius: 14px; display: none;">
+        <img src="content/g_wagon_g63.jpg" alt="Mercedes G-Wagon G63" class="car-display-image" style="width: 100%; height: 100%; object-fit: cover; border-radius: 14px; display: none;">
         <img src="content/range_rover.jpg" alt="Range Rover" class="car-display-image" style="width: 100%; height: 100%; object-fit: cover; border-radius: 14px; display: none;">
       </div>
       <div class="model-details">
-        <h3 id="currentModelName">Mercedes G63</h3>
-        <p id="currentModelPrice">Dubai Price: €85,000</p>
-        <p id="currentModelSavings">Savings: €60,000</p>
+        <h3 id="currentModelName">BMW M5</h3>
+        <p id="currentModelPrice">Dubai Price: €55,000</p>
+        <p id="currentModelSavings">Savings: €40,000</p>
       </div>
     </div>
   </section>
@@ -674,8 +689,8 @@
       <div class="founder">Konstantinos Lelekas – Founder</div>
       
       <div class="car-gallery" style="margin-top: 40px;">
-        <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=600&q=80" alt="Car inspection in Dubai" class="car-img">
-        <img src="https://images.unsplash.com/photo-1616788494707-ec28f08d05a1?auto=format&fit=crop&w=600&q=80" alt="Dubai luxury cars" class="car-img">
+        <img src="https://images.unsplash.com/photo-1638686302275-0e87df720aca?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?auto=format&fit=crop&w=600&q=80" alt="Car inspection in Dubai" class="car-img" style="object-position: center 100%;">
+        <img src="https://images.unsplash.com/photo-1634673970798-a15ae56f6c65?q=80&w=1528&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?auto=format&fit=crop&w=600&q=80&h=500" alt="Dubai luxury cars" class="car-img" style="object-position: center 10%;">
         <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=600&q=80" alt="High-end vehicles" class="car-img">
       </div>
       
@@ -785,18 +800,26 @@
         duration: 0.5,
         onComplete: function() {
           document.getElementById("preloader").style.display = "none";
+          // Animate hero section rising up
+          gsap.from('#hero', {
+            y: 60,
+            opacity: 0,
+            duration: 0.9,
+            ease: 'power2.out'
+          });
           initAnimations();
         }
       });
     });
     
     function initAnimations() {
-      // Animate hero elements
-      gsap.from('#hero h1', { 
+      // Animate hero elements together
+      gsap.from('#hero h1, #hero .subheadline, #hero .cta-button-group', { 
         y: 30, 
         opacity: 0, 
         duration: 0.8, 
         delay: 0.3,
+        stagger: 0.1,
         ease: "power2.out" 
       });
       gsap.from('#hero .subheadline', { 
@@ -900,12 +923,13 @@
             document.getElementById('europePrice').textContent = `€${parseInt(this.dataset.europe).toLocaleString()}`;
             
             // Hide all car images
-            document.querySelectorAll('.car-display-image').forEach(img => {
+            // Only hide images inside the model visualizer
+            document.querySelectorAll('.model-visualizer .car-display-image').forEach(img => {
               img.style.display = 'none';
             });
             
             // Show the selected car image
-            const selectedImage = document.querySelector(`.car-display-image[src="${this.dataset.model}.jpg"]`);
+            const selectedImage = document.querySelector(`.model-visualizer .car-display-image[src="content/${this.dataset.model}.jpg"]`);
             if (selectedImage) {
               selectedImage.style.display = 'block';
             }
