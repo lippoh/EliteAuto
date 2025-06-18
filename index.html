@@ -266,29 +266,6 @@
       transform: scale(1.03);
       box-shadow: 0 12px 30px rgba(212,175,55,0.3);
     }
-    .whatsapp-bubble {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background: #25d366;
-      color: #fff;
-      border-radius: 50%;
-      width: 70px;
-      height: 70px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
-      cursor: pointer;
-      z-index: 1000;
-      font-size: 2.2rem;
-      transition: all 0.3s ease;
-      animation: pulse 2s infinite;
-    }
-    .whatsapp-bubble:hover {
-      transform: scale(1.1);
-      background: #128c7e;
-    }
     @keyframes pulse {
       0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
       70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
@@ -752,15 +729,6 @@
         height: 150px !important;
     }
     
-    /* WhatsApp Bubble */
-    .whatsapp-bubble {
-      width: 60px !important;
-      height: 60px !important;
-      font-size: 1.8rem !important;
-      bottom: 20px !important;
-      right: 20px !important;
-    }
-    
     /* Typing Animation Adjustment */
     #typed-text {
       height: auto !important;
@@ -940,19 +908,15 @@
       </div>
     </section>
 
-    <div class="whatsapp-bubble" onclick="window.open('https://wa.me/1234567890')">
-      <i class="fab fa-whatsapp"></i>
-    </div>
-
     <section id="brands">
       <h2>Featured Brands</h2>
       <p>We specialize in these premium automotive brands from Dubai's luxury market</p>
       <div class="brand-logos">
-        <img src="content/car_logos/bmw_logo.png" alt="BMW" class="brand-logo">
-        <img src="content/car_logos/dodge_logo.png" alt="Dodge" class="brand-logo">
-        <img src="content/car_logos/mercedes_benz_logo.png" alt="Mercedes-Benz" class="brand-logo">
-        <img src="content/car_logos/mustang_logo.png" alt="Mustang" class="brand-logo">
-        <img src="content/car_logos/porsche_logo.png" alt="Porsche" class="brand-logo">
+      <img src="content/car_logos/bmw_logo.png" alt="BMW" class="brand-logo">
+      <img src="content/car_logos/dodge_logo.png" alt="Dodge" class="brand-logo">
+      <img src="content/car_logos/mercedes_benz_logo.png" alt="Mercedes-Benz" class="brand-logo">
+      <img src="content/car_logos/mustang_logo.png" alt="Mustang" class="brand-logo" style="margin-left: 30px;">
+      <img src="content/car_logos/porsche_logo.png" alt="Porsche" class="brand-logo" style="height:130px; position:relative; top:-18px;">
       </div>
     </section>
   </div>
