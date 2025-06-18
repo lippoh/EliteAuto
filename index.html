@@ -539,6 +539,31 @@
         flex-direction: column;
         align-items: center;
       }
+      #hero {
+        min-height: 420px !important;
+        height: 60vh !important;
+        max-height: 600px !important;
+        background-size: cover !important;
+        background-position: center center !important;
+        background-repeat: no-repeat !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /* Prevent resizing on text wrap */
+        box-sizing: border-box;
+        overflow: hidden;
+      }
+      #hero .subheadline-hero {
+        min-height: 48px !important;
+        max-width: 95vw !important;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* Prevent layout shift on line break */
+        transition: none !important;
+      }
     }
 
       /* ====== Mobile-Specific Enhancements ====== */
@@ -726,72 +751,23 @@
     .step p {
       font-size: 0.9rem;
     }
+    
+    #hero {
+      min-height: 320px !important;
+      height: 52vh !important;
+      max-height: 480px !important;
+    }
+    #hero .subheadline-hero {
+      min-height: 38px !important;
+    }
   }
 
-  /* Mobile-specific styles for the 'who' section */
   @media (max-width: 768px) {
-    /* --- WHO SECTION MOBILE ENHANCEMENTS --- */
-    #who {
-      padding-top: 36px !important;
-      padding-bottom: 36px !important;
-      border-radius: 18px !important;
-      text-align: center !important;
-    }
-    #who h2 {
-      margin-bottom: 0.7em !important;
-      font-size: 1.3rem !important;
-    }
-    #who p {
-      font-size: 1.02rem !important;
-      margin-bottom: 1.2em !important;
-      text-align: center !important;
-    }
-    #who .founder {
-      margin: 18px auto 0 auto !important;
-      display: block !important;
-      font-size: 1.01rem !important;
-      padding: 7px 14px !important;
-      border-radius: 30px !important;
-      width: fit-content;
-      background: var(--gold-light) !important;
-      color: var(--gold) !important;
-      box-shadow: 0 2px 10px rgba(212,175,55,0.08);
-    }
-    #who .car-gallery {
-      display: flex !important;
-      flex-direction: column !important;
-      align-items: center !important;
-      justify-content: center !important;
-      gap: 18px !important;
-      margin-top: 18px !important;
-      margin-bottom: 18px !important;
-      width: 100% !important;
-    }
-    #who .car-img {
-      margin-left: auto !important;
-      margin-right: auto !important;
-      display: block !important;
-    }
-  }
+  #who .car-img:nth-child(1) { object-position: center top !important; }
+  #who .car-img:nth-child(2) { object-position: center 30% !important; }
+  #who .car-img:nth-child(3) { object-position: center bottom !important; }
+}
 
-  @media (max-width: 480px) {
-    #who .car-img {
-      width: 96vw !important;
-      max-width: 99vw !important;
-      height: 120px !important;
-      border-radius: 12px !important;
-    }
-    #who h2 {
-      font-size: 1.08rem !important;
-    }
-    #who p {
-      font-size: 0.93rem !important;
-    }
-    #who .founder {
-      font-size: 0.93rem !important;
-      padding: 6px 10px !important;
-    }
-  }
   </style>
 </head>
 <body>
