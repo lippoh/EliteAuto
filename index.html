@@ -302,8 +302,8 @@
       }
     }
 
-      /* ====== Mobile-Specific Enhancements ====== */
-  @media (max-width: 768px) {
+    /* ====== Mobile-Specific Enhancements ====== */
+    @media (max-width: 768px) {
     body {
       transform: none !important;
       width: 100% !important;
@@ -322,10 +322,10 @@
       line-height: 1.2 !important;
     }
     h2 {
-      font-size: 1.15rem !important;
+      font-size: 1.35rem !important; /* Increased for better visibility */
     }
     .subheadline, .subheadline-hero {
-      font-size: 0.95rem !important;
+      font-size: 1.08rem !important; /* Increased for better visibility */
       margin-bottom: 1em !important;
       max-width: 95vw !important;
     }
@@ -346,7 +346,7 @@
     }
     
     #hero .subheadline-hero {
-      font-size: 1rem !important;
+      font-size: 1.08rem !important; /* Increased for better visibility */
       height: auto !important;
       margin-bottom: 1.5em;
     }
@@ -403,10 +403,11 @@
       gap: 16px !important;
       margin: 18px 0 0 0 !important;
     }
-    .car-img, #who .car-img {
+    /* Removed car-img and #who .car-img height overrides for mobile, use default desktop size */
+    /* .car-img, #who .car-img {
       height: 120px !important;
       border-radius: 10px !important;
-    }
+    } */
     .car-gallery .car-img,
     #who .car-img {
       object-fit: cover !important;
@@ -418,10 +419,10 @@
       height: auto !important;
       overflow: visible !important;
     }
-  }
-  
-  /* Smaller Phones (<= 480px) */
-  @media (max-width: 480px) {
+    }
+
+    /* Smaller Phones (<= 480px) */
+    @media (max-width: 480px) {
     header, section {
       padding: 18px 2vw !important;
       border-radius: 8px !important;
@@ -429,11 +430,11 @@
     }
 
     h2 {
-      font-size: 1rem !important;
+      font-size: 1.18rem !important; /* Increased for better visibility */
     }
 
     .subheadline, .subheadline-hero {
-      font-size: 0.89rem !important;
+      font-size: 1rem !important; /* Increased for better visibility */
     }
     
     .model-selector {
@@ -443,9 +444,10 @@
     .car-display {
       height: 200px !important;
     }
-    .car-img, #who .car-img {
+    /* Removed car-img and #who .car-img height overrides for mobile, use default desktop size */
+    /* .car-img, #who .car-img {
       height: 90px !important;
-    }
+    } */
     
     .steps {
       gap: 12px !important;
@@ -471,13 +473,29 @@
     #hero .subheadline-hero {
       min-height: 38px !important;
     }
-  }
+    }
 
-  @media (max-width: 768px) {
-  #who .car-img:nth-child(1) { object-position: center top !important; }
-  #who .car-img:nth-child(2) { object-position: center 30% !important; }
-  #who .car-img:nth-child(3) { object-position: center bottom !important; }
-}
+    /* Removed brand-logo and brand-logo[alt="Porsche"] height overrides for mobile, use default desktop size */
+    /* 
+    @media (max-width: 768px) {
+      .brand-logos {
+      gap: 30px;
+      }
+      .brand-logo {
+      height: 60px;
+      }
+      .brand-logo[alt="Porsche"] {
+      height: 80px;
+      }
+    }
+    */
+
+    @media (max-width: 768px) {
+    #who .car-img:nth-child(1) { object-position: center top !important; }
+    #who .car-img:nth-child(2) { object-position: center 30% !important; }
+    #who .car-img:nth-child(3) { object-position: center bottom !important; }
+    }
+
 
   </style>
 </head>
