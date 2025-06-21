@@ -347,11 +347,11 @@
     }
     #hero {
       position: relative;
-      min-height: 80vh;
+      min-height: 45vh; /* was 80vh, now smaller */
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 80px 5vw;
+      padding: 36px 5vw; /* was 80px, now smaller */
       margin-top: 40px;
       /* Smooth fade/slide in effect */
       opacity: 0;
@@ -361,6 +361,13 @@
     #hero.visible {
       opacity: 1;
       transform: translateY(0);
+    }
+    /* Responsive: smaller hero on mobile */
+    @media (max-width: 768px) {
+      #hero {
+        min-height: 28vh !important;
+        padding: 18px 3vw !important;
+      }
     }
     .hero-video-container {
       position: absolute;
