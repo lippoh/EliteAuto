@@ -403,15 +403,15 @@
       gap: 16px !important;
       margin: 18px 0 0 0 !important;
     }
-    /* Removed car-img and #who .car-img height overrides for mobile, use default desktop size */
-    /* .car-img, #who .car-img {
-      height: 120px !important;
-      border-radius: 10px !important;
-    } */
+    /* Make car gallery image boxes taller on mobile for better car visibility */
     .car-gallery .car-img,
     #who .car-img {
-      object-fit: cover !important;
+      height: 260px !important;
+      object-fit: contain !important;
       object-position: center center !important;
+      background: #18191d;
+      border-radius: 14px !important;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.13);
     }
     
     /* Typing Animation Adjustment */
@@ -419,81 +419,80 @@
       height: auto !important;
       overflow: visible !important;
     }
+
+    /* Brand logos: always align in one line, allow horizontal scroll on mobile if needed */
+    .brand-logos {
+      flex-wrap: nowrap !important;
+      overflow-x: auto !important;
+      gap: 40px !important;
+      justify-content: flex-start !important;
+      -webkit-overflow-scrolling: touch;
+    }
+    .brand-logo {
+      flex: 0 0 auto !important;
+      display: inline-block !important;
+      margin: 0 !important;
+      vertical-align: middle !important;
     }
 
-    /* Smaller Phones (<= 480px) */
     @media (max-width: 480px) {
-    header, section {
+      header, section {
       padding: 18px 2vw !important;
       border-radius: 8px !important;
       margin-bottom: 10px !important;
-    }
+      }
 
-    h2 {
+      h2 {
       font-size: 1.18rem !important; /* Increased for better visibility */
-    }
+      }
 
-    .subheadline, .subheadline-hero {
+      .subheadline, .subheadline-hero {
       font-size: 1rem !important; /* Increased for better visibility */
-    }
-    
-    .model-selector {
+      }
+      
+      .model-selector {
       grid-template-columns: 1fr !important;
-    }
-    
-    .car-display {
+      }
+      
+      .car-display {
       height: 200px !important;
-    }
-    /* Removed car-img and #who .car-img height overrides for mobile, use default desktop size */
-    /* .car-img, #who .car-img {
-      height: 90px !important;
-    } */
-    
-    .steps {
+      }
+      /* Make car gallery image boxes taller on small phones as well */
+      .car-gallery .car-img,
+      #who .car-img {
+      height: 200px !important;
+      }
+      
+      .steps {
       gap: 12px !important;
-    }
-    
-    .step {
+      }
+      
+      .step {
       padding: 18px 12px !important;
-    }
-    
-    .step h3 {
+      }
+      
+      .step h3 {
       font-size: 1.1rem;
-    }
-    
-    .step p {
+      }
+      
+      .step p {
       font-size: 0.9rem;
-    }
-    
-    #hero {
+      }
+      
+      #hero {
       min-height: 320px !important;
       height: 52vh !important;
       max-height: 480px !important;
-    }
-    #hero .subheadline-hero {
+      }
+      #hero .subheadline-hero {
       min-height: 38px !important;
-    }
+      }
     }
 
-    /* Removed brand-logo and brand-logo[alt="Porsche"] height overrides for mobile, use default desktop size */
-    /* 
     @media (max-width: 768px) {
-      .brand-logos {
-      gap: 30px;
-      }
-      .brand-logo {
-      height: 60px;
-      }
-      .brand-logo[alt="Porsche"] {
-      height: 80px;
-      }
-    }
-    */
-
-    @media (max-width: 768px) {
-    #who .car-img:nth-child(1) { object-position: center top !important; }
-    #who .car-img:nth-child(2) { object-position: center 30% !important; }
-    #who .car-img:nth-child(3) { object-position: center bottom !important; }
+      #who .car-img:nth-child(1) { object-position: center top !important; }
+      #who .car-img:nth-child(2) { object-position: center 30% !important; }
+      #who .car-img:nth-child(3) { object-position: center bottom !important; }
     }
 
 
