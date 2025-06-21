@@ -420,19 +420,27 @@
       overflow: visible !important;
     }
 
-    /* Brand logos: always align in one line, allow horizontal scroll on mobile if needed */
+    /* Brand logos: shrink and fit horizontally on mobile */
     .brand-logos {
       flex-wrap: nowrap !important;
       overflow-x: auto !important;
-      gap: 40px !important;
+      gap: 20px !important;
       justify-content: flex-start !important;
       -webkit-overflow-scrolling: touch;
+      padding-bottom: 8px;
+      margin: 30px 0 !important;
     }
     .brand-logo {
       flex: 0 0 auto !important;
       display: inline-block !important;
       margin: 0 !important;
       vertical-align: middle !important;
+      height: 38px !important;
+      max-width: 70px !important;
+    }
+    .brand-logo[alt="Porsche"] {
+      height: 48px !important;
+      max-width: 80px !important;
     }
 
     @media (max-width: 480px) {
@@ -486,6 +494,15 @@
       }
       #hero .subheadline-hero {
       min-height: 38px !important;
+      }
+      /* Brand logos even smaller on small phones */
+      .brand-logo {
+      height: 28px !important;
+      max-width: 50px !important;
+      }
+      .brand-logo[alt="Porsche"] {
+      height: 36px !important;
+      max-width: 60px !important;
       }
     }
 
