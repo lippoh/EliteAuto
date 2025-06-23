@@ -347,13 +347,12 @@
     }
     #hero {
       position: relative;
-      min-height: 45vh; /* was 80vh, now smaller */
+      min-height: 45vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 36px 5vw; /* was 80px, now smaller */
+      padding: 36px 5vw;
       margin-top: 40px;
-      /* Smooth fade/slide in effect */
       opacity: 0;
       transform: translateY(40px);
       transition: opacity 1.1s cubic-bezier(0.25,0.8,0.25,1), transform 1.1s cubic-bezier(0.25,0.8,0.25,1);
@@ -362,7 +361,6 @@
       opacity: 1;
       transform: translateY(0);
     }
-    /* Responsive: smaller hero on mobile */
     @media (max-width: 768px) {
       #hero {
         min-height: 28vh !important;
@@ -446,7 +444,7 @@
       }
       .brand-logos {
         gap: 30px;
-        justify-content: center; /* Center logos on mobile */
+        justify-content: center;
       }
       .brand-logo {
         height: 60px;
@@ -510,7 +508,7 @@
         align-items: center;
       }
     }
-
+    
     @media (max-width: 768px) {
       body {
         transform: none !important;
@@ -589,7 +587,7 @@
         flex-wrap: nowrap !important;
         overflow-x: auto !important;
         gap: 20px !important;
-        justify-content: center !important; /* Center logos on mobile */
+        justify-content: center !important;
         -webkit-overflow-scrolling: touch;
         padding-bottom: 8px;
         margin: 30px 0 !important;
@@ -648,46 +646,68 @@
   
   <div class="smooth-scroll">
     <header id="hero" style="margin-top: 40px; position: relative; overflow: hidden; background: none;">
-      <video id="heroVideo" autoplay muted playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2;">
+      <!-- FIXED: Added proper mobile video attributes -->
+      <video id="heroVideo" autoplay muted playsinline loop webkit-playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2;">
         <source src="content/car_hero.mp4" type="video/mp4">
-        <!-- fallback image -->
+        <!-- Fallback image for when video fails to load -->
         <img src="content/hero-screen.png" alt="Sports Car" style="width:100%;height:100%;object-fit:cover;">
       </video>
+      
       <script>
-        // Play the hero video backwards and stop at the last frame
         document.addEventListener('DOMContentLoaded', function() {
           var heroVideo = document.getElementById('heroVideo');
           if (heroVideo) {
-            heroVideo.loop = false;
-            heroVideo.playbackRate = -1; // Attempt to play backwards
-            heroVideo.currentTime = heroVideo.duration || heroVideo.seekable.end(0) || 0;
-            heroVideo.play();
-            // Fallback for browsers that don't support negative playbackRate
-            heroVideo.addEventListener('play', function() {
-              if (heroVideo.playbackRate !== -1) {
-                // Manual reverse playback
-                var reverseInterval = setInterval(function() {
-                  if (heroVideo.currentTime <= 0.04) {
-                    heroVideo.pause();
-                    clearInterval(reverseInterval);
-                  } else {
-                    heroVideo.currentTime -= 0.04;
-                  }
-                }, 40);
+            // FIXED: Enhanced mobile video support
+            heroVideo.setAttribute('playsinline', '');
+            heroVideo.setAttribute('webkit-playsinline', '');
+            heroVideo.muted = true;
+            heroVideo.loop = true;
+            
+            // Try to play the video with promise handling for mobile
+            var playPromise = heroVideo.play();
+            
+            if (playPromise !== undefined) {
+              playPromise.then(function() {
+                // Video started playing successfully
+                console.log('Video autoplay started');
+              }).catch(function(error) {
+                // Autoplay was prevented
+                console.log('Video autoplay prevented:', error);
+                // Fallback: show static image
+                heroVideo.style.display = 'none';
+                var fallbackImg = document.createElement('img');
+                fallbackImg.src = 'content/hero-screen.png';
+                fallbackImg.style.cssText = 'position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2;';
+                heroVideo.parentNode.insertBefore(fallbackImg, heroVideo);
+              });
+            }
+            
+            // Additional mobile-specific handling
+            heroVideo.addEventListener('loadedmetadata', function() {
+              heroVideo.currentTime = 0;
+            });
+            
+            // Handle visibility change (when user switches tabs)
+            document.addEventListener('visibilitychange', function() {
+              if (document.visibilityState === 'visible') {
+                heroVideo.play().catch(function(error) {
+                  console.log('Resume play failed:', error);
+                });
               }
             });
           }
         });
-        // Smoothly show the hero section box
+        
         window.addEventListener('load', function() {
           setTimeout(function() {
             document.getElementById('hero').classList.add('visible');
-          }, 350); // Start just before the typewriter effect
+          }, 350);
         });
       </script>
+      
       <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(17,18,22,0.55);z-index:-1;"></div>
       <div class="parallax-bg" style="background-image: url('content/hero-screen.png');"></div>
-      <h1>We Don’t Sell Cars — We Deliver Leverage.</h1>
+      <h1>We Don't Sell Cars — We Deliver Leverage.</h1>
       <div class="subheadline-hero" id="slogan-text" style="height: 80px; opacity: 0; transform: translateY(40px); transition: opacity 1s cubic-bezier(0.25,0.8,0.25,1), transform 1s cubic-bezier(0.25,0.8,0.25,1);">
         We connect serious buyers in Europe with real savings on high-performance cars — directly from the UAE.
       </div>
@@ -697,7 +717,7 @@
             var slogan = document.getElementById('slogan-text');
             slogan.style.opacity = 1;
             slogan.style.transform = 'translateY(0)';
-          }, 700); // Start after hero box appears
+          }, 700);
         });
       </script>
       <div style="margin-top: 80px;"></div>
@@ -817,25 +837,20 @@
     </div>
   </section>
 
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
   <script>
-    // Initialize GSAP animations
     gsap.registerPlugin(ScrollTrigger);
     
-    // Hide preloader when page is loaded
     window.addEventListener('load', function() {
-      // Animate CTA button group
       setTimeout(() => {
         const cta = document.querySelector('#hero .cta-button-group');
         if (cta) {
           cta.style.opacity = 1;
           cta.style.transform = "translateY(0)";
         }
-      }, 1700);
+      }, 700);
       
-      // Hide preloader
       gsap.to("#preloader", {
         opacity: 0,
         duration: 0.5,
@@ -847,7 +862,6 @@
     });
     
     function initAnimations() {
-      // Animate hero elements
       gsap.from('#hero h1', { 
         y: 30, 
         opacity: 0, 
@@ -856,7 +870,6 @@
         ease: "power2.out" 
       });
       
-      // Animate all sections on scroll
       gsap.utils.toArray('section').forEach(section => {
         gsap.from(section, {
           scrollTrigger: {
@@ -871,7 +884,6 @@
         });
       });
       
-      // Create floating shapes animation
       function createFloatingShapes(containerId, count = 10) {
         const container = document.getElementById(containerId);
         if (!container) return;
@@ -880,18 +892,15 @@
           const shape = document.createElement('div');
           shape.classList.add('shape');
           
-          // Random size between 5px and 20px
           const size = Math.random() * 15 + 5;
           shape.style.width = `${size}px`;
           shape.style.height = `${size}px`;
           
-          // Random position
           shape.style.left = `${Math.random() * 100}%`;
           shape.style.top = `${Math.random() * 100}%`;
           
           container.appendChild(shape);
           
-          // Animate each shape
           gsap.to(shape, {
             x: `${(Math.random() - 0.5) * 100}px`,
             y: `${(Math.random() - 0.5) * 100}px`,
@@ -906,7 +915,6 @@
       createFloatingShapes('floatingShapes');
       createFloatingShapes('whoShapes', 5);
       
-      // Hover effect for CTA buttons
       const ctaButtons = document.querySelectorAll('.cta-btn');
       ctaButtons.forEach(button => {
         button.addEventListener('mouseenter', () => {
@@ -925,22 +933,17 @@
         });
       });
       
-      // Form submission handling
       const contactForm = document.querySelector('.contact-form');
       if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
           e.preventDefault();
           
-          // Simple validation
           const name = document.getElementById('name').value;
           const email = document.getElementById('email').value;
           const message = document.getElementById('message').value;
           
           if (name && email && message) {
-            // Show success message
             alert('Thank you for your inquiry! We will contact you shortly.');
-            
-            // Reset form
             contactForm.reset();
           } else {
             alert('Please fill in all required fields.');
