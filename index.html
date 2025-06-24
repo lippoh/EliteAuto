@@ -107,13 +107,29 @@
       background: var(--white);
     }
     
+    /* FIXED SLOGAN STYLING - ENSURE PERMANENT VISIBILITY */
     .subheadline-hero {
       font-size: clamp(1rem, 2vw, 1.2rem);
       color: var(--white);
       margin-bottom: 1.5em;
       font-weight: 400;
       max-width: 700px;
-      opacity: 1;
+      /* CRITICAL: Ensure slogan stays visible */
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+      /* Prevent any animations from hiding it */
+      transition: none !important;
+      /* Ensure it's always visible */
+      visibility: visible !important;
+      display: block !important;
+      position: relative;
+      z-index: 10;
+    }
+    
+    /* Ensure slogan is visible after animations */
+    .subheadline-hero.animated {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
     }
     
     .subheadline {
@@ -649,7 +665,7 @@
         margin: 20px auto 30px auto !important;
       }
       
-      /* SLOGAN VISIBILITY FIX - IMPROVED */
+      /* MOBILE SLOGAN - ENSURE PERMANENT VISIBILITY */
       .subheadline-hero {
         font-size: clamp(1.05rem, 4vw, 1.25rem) !important;
         line-height: 1.5 !important;
@@ -657,16 +673,22 @@
         max-width: 90vw !important;
         text-align: center !important;
         padding: 0 15px !important;
-        /* Ensure proper visibility */
+        /* CRITICAL: Force visibility on mobile */
         opacity: 1 !important;
         transform: translateY(0) !important;
+        transition: none !important;
+        visibility: visible !important;
+        display: block !important;
         /* Better contrast for mobile */
         text-shadow: 0 1px 3px rgba(0,0,0,0.3) !important;
         /* Minimum height to prevent layout shift */
         min-height: 60px !important;
+        /* Flexbox centering */
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
+        position: relative !important;
+        z-index: 10 !important;
       }
       
       /* Ensure other subheadlines are also properly sized */
@@ -919,11 +941,17 @@
         margin: 15px auto 25px auto !important;
       }
       
-      /* Slogan for small screens */
+      /* Slogan for small screens - ENSURE VISIBILITY */
       .subheadline-hero {
         font-size: clamp(1rem, 4.5vw, 1.15rem) !important;
         padding: 0 10px !important;
         min-height: 50px !important;
+        /* CRITICAL: Force visibility */
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        transition: none !important;
+        visibility: visible !important;
+        display: flex !important;
       }
       
       /* Button sizing for small screens */
@@ -996,6 +1024,12 @@
       .subheadline-hero {
         font-size: clamp(0.95rem, 3vw, 1.1rem) !important;
         min-height: 45px !important;
+        /* CRITICAL: Force visibility in landscape */
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        transition: none !important;
+        visibility: visible !important;
+        display: flex !important;
       }
     }
     
@@ -1046,7 +1080,8 @@
       <img src="content/website_logo/logo.png" alt="Company Logo" class="hero-logo" id="heroLogo">
       
       <h1>We Don't Sell Cars — We Deliver Leverage.</h1>
-      <div class="subheadline-hero" id="slogan-text" style="opacity: 0; transform: translateY(40px); transition: opacity 1s cubic-bezier(0.25,0.8,0.25,1), transform 1s cubic-bezier(0.25,0.8,0.25,1);">
+      <!-- FIXED SLOGAN - REMOVED INLINE STYLES THAT CAUSE DISAPPEARING -->
+      <div class="subheadline-hero" id="slogan-text">
         We connect serious buyers in Europe with real savings on high-performance cars — directly from the UAE.
       </div>
       
@@ -1064,7 +1099,7 @@
       <b>You choose the car.</b> We make sure you don't overpay for it.</p>
     </section>
 
-    <section id="who" style="opacity: 1; transform: none; transition: none;">
+    <section id="who">
       <h2>Built by Buyers. Driven by Expertise.</h2>
       <p class="subheadline">We're not just car buyers — we're industry insiders who transformed our personal experience importing luxury cars into a powerful network.<br>
         After seeing firsthand how much people in Europe were overpaying, we decided to
@@ -1244,12 +1279,24 @@
         document.getElementById('hero').classList.add('visible');
       }, 350);
       
-      // Then animate slogan - ensure it's visible
+      // FIXED SLOGAN ANIMATION - ENSURE IT STAYS VISIBLE
       setTimeout(function() {
         var slogan = document.getElementById('slogan-text');
         if (slogan) {
-          slogan.style.opacity = 1;
+          // Force visibility and add animated class
+          slogan.style.opacity = '1';
           slogan.style.transform = 'translateY(0)';
+          slogan.style.visibility = 'visible';
+          slogan.style.display = 'flex';
+          slogan.classList.add('animated');
+          
+          // Ensure it stays visible permanently
+          setTimeout(function() {
+            slogan.style.opacity = '1';
+            slogan.style.transform = 'translateY(0)';
+            slogan.style.visibility = 'visible';
+            slogan.style.display = 'flex';
+          }, 100);
         }
       }, 700);
       
@@ -1277,6 +1324,17 @@
       window.scrollTo(0, 0);
       document.documentElement.scrollTop = 0;
       document.body.scrollTop = 0;
+      
+      // ADDITIONAL SLOGAN VISIBILITY INSURANCE
+      setTimeout(function() {
+        var slogan = document.getElementById('slogan-text');
+        if (slogan) {
+          slogan.style.opacity = '1';
+          slogan.style.transform = 'translateY(0)';
+          slogan.style.visibility = 'visible';
+          slogan.style.display = 'flex';
+        }
+      }, 100);
     });
     
     function initAnimations() {
@@ -1286,6 +1344,26 @@
         duration: 0.8, 
         delay: 0.3,
         ease: "power2.out" 
+      });
+      
+      // SLOGAN ANIMATION - ENSURE PERMANENT VISIBILITY
+      gsap.from('#slogan-text', { 
+        y: 20, 
+        opacity: 0, 
+        duration: 0.6, 
+        delay: 0.5,
+        ease: "power2.out",
+        onComplete: function() {
+          // Force permanent visibility after animation
+          var slogan = document.getElementById('slogan-text');
+          if (slogan) {
+            slogan.style.opacity = '1';
+            slogan.style.transform = 'translateY(0)';
+            slogan.style.visibility = 'visible';
+            slogan.style.display = 'flex';
+            slogan.classList.add('animated');
+          }
+        }
       });
       
       gsap.utils.toArray('section').forEach(section => {
@@ -1385,6 +1463,17 @@
           }
         });
       }
+      
+      // FINAL SLOGAN VISIBILITY CHECK
+      setTimeout(function() {
+        var slogan = document.getElementById('slogan-text');
+        if (slogan) {
+          slogan.style.opacity = '1';
+          slogan.style.transform = 'translateY(0)';
+          slogan.style.visibility = 'visible';
+          slogan.style.display = 'flex';
+        }
+      }, 2000);
     }
     
     // Smooth scroll to How It Works section
