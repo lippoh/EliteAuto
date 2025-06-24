@@ -107,29 +107,27 @@
       background: var(--white);
     }
     
-    /* FIXED SLOGAN STYLING - ENSURE PERMANENT VISIBILITY */
+    /* SLOGAN STYLING - REMOVE FORCED VISIBILITY */
     .subheadline-hero {
       font-size: clamp(1rem, 2vw, 1.2rem);
       color: var(--white);
       margin-bottom: 1.5em;
       font-weight: 400;
       max-width: 700px;
-      /* CRITICAL: Ensure slogan stays visible */
-      opacity: 1 !important;
-      transform: translateY(0) !important;
-      /* Prevent any animations from hiding it */
-      transition: none !important;
-      /* Ensure it's always visible */
-      visibility: visible !important;
-      display: block !important;
+      /* Remove forced visibility and !important rules */
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s, transform 0.8s;
+      visibility: visible;
+      display: block;
       position: relative;
       z-index: 10;
     }
-    
-    /* Ensure slogan is visible after animations */
-    .subheadline-hero.animated {
-      opacity: 1 !important;
-      transform: translateY(0) !important;
+
+    .subheadline-hero.visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.8s, transform 0.8s;
     }
     
     .subheadline {
@@ -1224,27 +1222,6 @@
         document.getElementById('hero').classList.add('visible');
       }, 350);
       
-      // FIXED SLOGAN ANIMATION - ENSURE IT STAYS VISIBLE
-      setTimeout(function() {
-        var slogan = document.getElementById('slogan-text');
-        if (slogan) {
-          // Force visibility and add animated class
-          slogan.style.opacity = '1';
-          slogan.style.transform = 'translateY(0)';
-          slogan.style.visibility = 'visible';
-          slogan.style.display = 'flex';
-          slogan.classList.add('animated');
-          
-          // Ensure it stays visible permanently
-          setTimeout(function() {
-            slogan.style.opacity = '1';
-            slogan.style.transform = 'translateY(0)';
-            slogan.style.visibility = 'visible';
-            slogan.style.display = 'flex';
-          }, 100);
-        }
-      }, 700);
-      
       // Finally animate CTA buttons
       setTimeout(() => {
         const cta = document.querySelector('#hero .cta-button-group');
@@ -1270,16 +1247,6 @@
       document.documentElement.scrollTop = 0;
       document.body.scrollTop = 0;
       
-      // ADDITIONAL SLOGAN VISIBILITY INSURANCE
-      setTimeout(function() {
-        var slogan = document.getElementById('slogan-text');
-        if (slogan) {
-          slogan.style.opacity = '1';
-          slogan.style.transform = 'translateY(0)';
-          slogan.style.visibility = 'visible';
-          slogan.style.display = 'flex';
-        }
-      }, 100);
     });
     
     function initAnimations() {
@@ -1290,24 +1257,16 @@
         delay: 0.3,
         ease: "power2.out" 
       });
-      
-      // SLOGAN ANIMATION - ENSURE PERMANENT VISIBILITY
-      gsap.from('#slogan-text', { 
-        y: 20, 
-        opacity: 0, 
-        duration: 0.6, 
-        delay: 0.5,
+
+      // Animate the hero slogan in after the h1
+      gsap.to('.subheadline-hero', {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        delay: 0.6,
         ease: "power2.out",
-        onComplete: function() {
-          // Force permanent visibility after animation
-          var slogan = document.getElementById('slogan-text');
-          if (slogan) {
-            slogan.style.opacity = '1';
-            slogan.style.transform = 'translateY(0)';
-            slogan.style.visibility = 'visible';
-            slogan.style.display = 'flex';
-            slogan.classList.add('animated');
-          }
+        onStart: function() {
+          document.querySelector('.subheadline-hero').classList.add('visible');
         }
       });
       
@@ -1408,17 +1367,6 @@
           }
         });
       }
-      
-      // FINAL SLOGAN VISIBILITY CHECK
-      setTimeout(function() {
-        var slogan = document.getElementById('slogan-text');
-        if (slogan) {
-          slogan.style.opacity = '1';
-          slogan.style.transform = 'translateY(0)';
-          slogan.style.visibility = 'visible';
-          slogan.style.display = 'flex';
-        }
-      }, 2000);
     }
     
     // Smooth scroll to How It Works section
