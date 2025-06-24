@@ -152,7 +152,7 @@
       position: relative;
       overflow: hidden;
       z-index: 1;
-      min-height: 48px; /* Touch-friendly minimum */
+      min-height: 48px;
     }
     
     .cta-btn::before {
@@ -230,7 +230,6 @@
       overflow: hidden;
     }
     
-    /* Removed goldish backlight */
     #brands::before {
       display: none !important;
       content: none !important;
@@ -249,7 +248,7 @@
       opacity: 0.9;
     }
     
-    /* Updated Brand Logos - Made Smaller */
+    /* Updated Brand Logos */
     .brand-logos {
       display: flex;
       flex-wrap: wrap;
@@ -301,7 +300,6 @@
       opacity: 1;
     }
     
-    /* Smaller Brand Logo Images */
     .brand-logo {
       height: clamp(35px, 5vw, 50px);
       width: auto;
@@ -311,10 +309,8 @@
       transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
       position: relative;
       z-index: 1;
-      /* Removed image-rendering properties to prevent pixelation */
     }
     
-    /* Special sizing for Porsche logo - also smaller */
     .brand-logo[alt="Porsche"] {
       height: clamp(45px, 6vw, 65px);
       max-width: 85px;
@@ -406,6 +402,14 @@
       font-size: 1.2rem;
     }
     
+    #why-dubai ul.checklist li::before {
+      content: '\2332';
+      color: var(--gold);
+      font-size: 1.3rem;
+      margin-right: 15px;
+      font-weight: normal;
+    }
+    
     /* Hero Section */
     #hero {
       position: relative;
@@ -488,7 +492,7 @@
       color: var(--white);
       font-family: var(--font-main);
       font-size: 1rem;
-      min-height: 44px; /* Touch-friendly */
+      min-height: 44px;
     }
     
     .form-group textarea {
@@ -553,7 +557,7 @@
     }
     
     /* ==============================================
-       MOBILE OPTIMIZATIONS
+       MOBILE OPTIMIZATIONS - IMPROVED VERSION
        ============================================== */
     
     /* Performance optimization - reduce animations on mobile */
@@ -563,7 +567,6 @@
         transition-duration: 0.3s !important;
       }
       
-      /* Reduce motion for better performance */
       @media (prefers-reduced-motion: reduce) {
         *, *::before, *::after {
           animation-duration: 0.01ms !important;
@@ -601,43 +604,38 @@
       }
     }
     
-    /* Primary Mobile Breakpoint - Smartphones */
+    /* PRIMARY MOBILE BREAKPOINT - SMARTPHONES */
     @media (max-width: 768px) {
       /* Container and Layout Adjustments */
       header, section {
-        padding: 40px 5vw;
-        margin-bottom: 20px;
+        padding: 45px 5vw;
+        margin-bottom: 25px;
         border-radius: 16px;
         box-shadow: 0 8px 32px rgba(0,0,0,0.2);
       }
       
       /* Typography Scaling */
       h1 {
-        font-size: clamp(1.8rem, 6vw, 2.5rem) !important;
-        line-height: 1.2;
-        margin-bottom: 0.6em;
+        font-size: clamp(1.9rem, 6vw, 2.6rem) !important;
+        line-height: 1.25;
+        margin-bottom: 0.7em;
+        text-align: center;
       }
       
       h2 {
-        font-size: clamp(1.4rem, 5vw, 2rem) !important;
-        margin-bottom: 0.7em;
+        font-size: clamp(1.5rem, 5vw, 2.1rem) !important;
+        margin-bottom: 0.8em;
       }
       
       h3 {
         font-size: clamp(1.2rem, 4vw, 1.6rem);
       }
       
-      .subheadline, .subheadline-hero, .subheadline-v2 {
-        font-size: clamp(0.9rem, 3vw, 1.1rem) !important;
-        line-height: 1.5;
-        margin-bottom: 1.2em;
-      }
-      
-      /* Hero Section Mobile Optimization */
+      /* HERO SECTION MOBILE OPTIMIZATION - IMPROVED */
       #hero {
-        min-height: 60vh !important;
-        max-height: 70vh !important;
-        padding: 30px 5vw !important;
+        min-height: 75vh !important;
+        max-height: 85vh !important;
+        padding: 40px 5vw !important;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -645,52 +643,75 @@
         text-align: center;
       }
       
+      /* Hero Logo Mobile Optimization */
       .hero-logo {
-        width: clamp(120px, 25vw, 180px) !important;
-        margin: 15px auto 25px auto;
+        width: clamp(140px, 30vw, 200px) !important;
+        margin: 20px auto 30px auto !important;
       }
       
-      #hero .subheadline-hero {
-        max-width: 95vw !important;
-        min-height: auto !important;
-        height: auto !important;
-        padding: 0 10px;
+      /* SLOGAN VISIBILITY FIX - IMPROVED */
+      .subheadline-hero {
+        font-size: clamp(1.05rem, 4vw, 1.25rem) !important;
+        line-height: 1.5 !important;
+        margin-bottom: 1.8em !important;
+        max-width: 90vw !important;
+        text-align: center !important;
+        padding: 0 15px !important;
+        /* Ensure proper visibility */
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        /* Better contrast for mobile */
+        text-shadow: 0 1px 3px rgba(0,0,0,0.3) !important;
+        /* Minimum height to prevent layout shift */
+        min-height: 60px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
       }
       
-      /* Touch-Friendly Button Optimization */
-      .cta-btn {
-        min-height: 48px; /* Apple's recommended touch target */
-        padding: 14px 24px !important;
-        font-size: 1rem !important;
+      /* Ensure other subheadlines are also properly sized */
+      .subheadline, .subheadline-v2 {
+        font-size: clamp(1rem, 3.5vw, 1.15rem) !important;
+        line-height: 1.6 !important;
+        margin-bottom: 1.5em !important;
+      }
+      
+      /* Hero CTA Buttons Mobile Optimization */
+      .cta-button-group {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px !important;
         width: 100%;
-        margin-bottom: 12px;
+        max-width: 300px;
+        margin: 30px auto 0 auto;
+      }
+      
+      .cta-btn {
+        min-height: 50px !important;
+        padding: 16px 24px !important;
+        font-size: 1.05rem !important;
+        width: 100%;
+        margin-bottom: 0;
         border-radius: 12px;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 8px;
+        gap: 10px;
+        /* Better touch targets */
+        -webkit-tap-highlight-color: rgba(212, 175, 55, 0.2);
       }
       
-      .cta-button-group {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 12px !important;
-        width: 100%;
-        max-width: 320px;
-        margin: 0 auto;
-      }
-      
+      /* Other CTA Button Groups */
       .cta-buttons {
         flex-direction: column;
-        gap: 10px;
+        gap: 12px;
         width: 100%;
       }
       
-      /* Inline CTA buttons for inquiry section */
       .cta-buttons.inquiry-inline-ctas {
         flex-direction: column;
         align-items: stretch;
-        gap: 10px;
+        gap: 12px;
         max-width: 100%;
       }
       
@@ -701,63 +722,25 @@
         max-width: 100%;
         white-space: normal;
         text-align: center;
+        padding: 16px 20px;
       }
       
-      /* Grid Layout Optimizations */
-      .car-gallery {
-        grid-template-columns: 1fr !important;
-        gap: 15px;
-        margin-top: 30px;
-      }
-      
-      .car-img {
-        height: 200px !important;
-        border-radius: 12px;
-      }
-      
-      .car-img:hover {
-        transform: none !important;
-        box-shadow: 0 8px 20px rgba(212,175,55,0.2) !important;
-      }
-      
-      /* Brand Logos Mobile Layout - Even Smaller */
-      .brand-logos {
-        gap: clamp(15px, 4vw, 30px);
-        justify-content: center;
-        margin: 25px 0;
-        padding: 10px 0;
-      }
-      
-      .brand-logo-container {
-        min-height: 60px;
-        min-width: 75px;
-        padding: 6px;
-        border-radius: 10px;
-      }
-      
-      .brand-logo {
-        height: clamp(28px, 4vw, 40px);
-        max-width: 55px;
-      }
-      
-      .brand-logo[alt="Porsche"] {
-        height: clamp(35px, 5vw, 50px);
-        max-width: 65px;
-      }
-      
-      /* Timeline Mobile Optimization */
+      /* TIMELINE ALIGNMENT FIX - IMPROVED */
       .timeline {
         flex-direction: column;
         align-items: flex-start;
-        gap: 20px;
+        gap: 25px !important;
+        margin: 40px 0 !important;
+        padding: 0 10px;
       }
       
       .timeline::before {
         top: 0;
         bottom: 0;
-        left: 20px;
-        width: 3px;
-        height: calc(100% - 40px);
+        left: 22px !important;
+        width: 4px !important;
+        height: calc(100% - 50px) !important;
+        background: var(--gold);
       }
       
       .timeline-step {
@@ -765,88 +748,124 @@
         align-items: flex-start;
         width: 100%;
         text-align: left;
+        margin-bottom: 0 !important;
+        padding-left: 0 !important;
       }
       
       .timeline-step .step-circle {
-        margin: 0 20px 0 0;
+        margin: 0 25px 0 0 !important;
         flex-shrink: 0;
-        width: 35px;
-        height: 35px;
-        font-size: 0.9rem;
+        width: 40px !important;
+        height: 40px !important;
+        font-size: 1rem !important;
+        font-weight: 700;
+        /* Better positioning */
+        position: relative;
+        z-index: 3;
+      }
+      
+      .timeline-step .step-content {
+        flex: 1;
+        padding-top: 5px;
       }
       
       .timeline-step .step-content h3 {
-        margin-bottom: 5px;
-        font-size: 1.1rem;
+        margin-bottom: 8px !important;
+        font-size: 1.15rem !important;
+        font-weight: 600;
+        color: var(--white);
       }
       
       .timeline-step .step-content p {
-        font-size: 0.9rem;
-        line-height: 1.4;
+        font-size: 0.95rem !important;
+        line-height: 1.5 !important;
+        color: rgba(255, 255, 255, 0.9);
+        margin-right: 10px;
+      }
+      
+      /* BRAND LOGOS MOBILE OPTIMIZATION - LARGER SIZE */
+      .brand-logos {
+        gap: clamp(20px, 5vw, 35px) !important;
+        justify-content: center;
+        margin: 35px 0 !important;
+        padding: 20px 0 !important;
+      }
+      
+      .brand-logo-container {
+        /* INCREASED SIZE - More visible on mobile */
+        min-height: 90px !important;
+        min-width: 110px !important;
+        padding: 12px !important;
+        border-radius: 12px;
+        /* Better visual feedback */
+        background: rgba(255, 255, 255, 0.05) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+      }
+      
+      .brand-logo {
+        /* SIGNIFICANTLY LARGER - Better visibility */
+        height: clamp(45px, 6vw, 60px) !important;
+        max-width: 80px !important;
+        /* Sharper rendering */
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+      }
+      
+      .brand-logo[alt="Porsche"] {
+        /* Special sizing for Porsche - also larger */
+        height: clamp(55px, 7vw, 75px) !important;
+        max-width: 100px !important;
+      }
+      
+      /* Enhanced hover effects for mobile touch */
+      .brand-logo-container:hover {
+        background: rgba(212, 175, 55, 0.12) !important;
+        border-color: rgba(212, 175, 55, 0.3) !important;
+        transform: translateY(-3px) scale(1.02) !important;
       }
       
       /* Checklist Mobile Optimization */
       ul.checklist {
-        gap: 10px;
-        margin-top: 20px;
+        gap: 12px;
+        margin-top: 25px;
       }
       
       ul.checklist li {
-        padding: 12px 16px;
+        padding: 14px 18px;
         font-size: 0.95rem;
-        border-radius: 8px;
+        border-radius: 10px;
+        border-left-width: 3px;
       }
       
       ul.checklist li::before {
-        font-size: 1rem;
-        margin-right: 12px;
-      }
-      
-      /* Testimonials Mobile Layout */
-      .testimonials {
-        grid-template-columns: 1fr !important;
-        gap: 15px;
-        margin-top: 30px;
-      }
-      
-      .testimonial-card {
-        padding: 20px;
-        border-radius: 12px;
-      }
-      
-      .testimonial-content {
-        font-size: 0.95rem;
-        margin-bottom: 12px;
-      }
-      
-      .testimonial-author {
-        font-size: 0.9rem;
+        font-size: 1.1rem;
+        margin-right: 14px;
       }
       
       /* Contact Form Mobile Optimization */
       .contact-form {
-        gap: 15px;
-        margin-top: 25px;
+        gap: 16px;
+        margin-top: 30px;
         max-width: 100%;
       }
       
       .form-group input,
       .form-group textarea,
       .form-group select {
-        padding: 12px;
+        padding: 14px;
         font-size: 1rem;
-        border-radius: 8px;
-        min-height: 44px; /* Touch-friendly */
+        border-radius: 10px;
+        min-height: 48px;
       }
       
       .form-group textarea {
-        min-height: 100px;
+        min-height: 120px;
         resize: vertical;
       }
       
       .form-group label {
         font-size: 0.95rem;
-        margin-bottom: 6px;
+        margin-bottom: 8px;
       }
       
       /* Video Background Mobile Optimization */
@@ -863,99 +882,97 @@
         background-attachment: scroll !important;
       }
       
-      /* Optimize video for mobile */
-      #heroVideo {
-        will-change: auto;
-      }
-      
       /* Reduce box shadows for performance */
       header, section {
-        box-shadow: 0 4px 16px rgba(0,0,0,0.15) !important;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.18) !important;
       }
     }
     
-    /* Small Mobile Devices */
+    /* SMALL MOBILE DEVICES - UNDER 480PX */
     @media (max-width: 480px) {
       /* Ultra-compact layout for small phones */
       header, section {
-        padding: 30px 4vw !important;
-        margin-bottom: 15px;
-        border-radius: 12px !important;
+        padding: 35px 4vw !important;
+        margin-bottom: 20px;
+        border-radius: 14px !important;
       }
       
       /* Typography for small screens */
       h1 {
-        font-size: clamp(1.6rem, 7vw, 2.2rem) !important;
+        font-size: clamp(1.7rem, 7vw, 2.3rem) !important;
+        line-height: 1.2 !important;
       }
       
       h2 {
-        font-size: clamp(1.3rem, 6vw, 1.8rem) !important;
-      }
-      
-      .subheadline, .subheadline-hero, .subheadline-v2 {
-        font-size: clamp(0.85rem, 4vw, 1rem) !important;
+        font-size: clamp(1.4rem, 6vw, 1.9rem) !important;
       }
       
       /* Hero adjustments for very small screens */
       #hero {
-        min-height: 50vh !important;
-        max-height: 60vh !important;
-        padding: 25px 4vw !important;
+        min-height: 70vh !important;
+        max-height: 80vh !important;
+        padding: 30px 4vw !important;
       }
       
       .hero-logo {
-        width: clamp(100px, 30vw, 140px) !important;
-        margin: 10px auto 20px auto;
+        width: clamp(120px, 35vw, 160px) !important;
+        margin: 15px auto 25px auto !important;
+      }
+      
+      /* Slogan for small screens */
+      .subheadline-hero {
+        font-size: clamp(1rem, 4.5vw, 1.15rem) !important;
+        padding: 0 10px !important;
+        min-height: 50px !important;
       }
       
       /* Button sizing for small screens */
       .cta-btn {
-        padding: 12px 20px !important;
-        font-size: 0.95rem !important;
-        min-height: 44px;
+        padding: 14px 20px !important;
+        font-size: 1rem !important;
+        min-height: 48px;
       }
       
-      /* Compact spacing */
-      .car-img {
-        height: 160px !important;
-      }
-      
-      /* Extra Small Brand Logos for Small Phones */
+      /* Brand Logos for Small Phones - Still Larger Than Before */
       .brand-logo-container {
-        min-height: 50px;
-        min-width: 65px;
-        padding: 5px;
+        min-height: 80px !important;
+        min-width: 95px !important;
+        padding: 10px !important;
       }
       
       .brand-logo {
-        height: clamp(22px, 3.5vw, 32px);
-        max-width: 45px;
+        height: clamp(40px, 5.5vw, 52px) !important;
+        max-width: 70px !important;
       }
       
       .brand-logo[alt="Porsche"] {
-        height: clamp(28px, 4.5vw, 40px);
-        max-width: 55px;
+        height: clamp(48px, 6.5vw, 65px) !important;
+        max-width: 85px !important;
       }
       
       /* Timeline compact view */
       .timeline-step .step-circle {
-        width: 30px;
-        height: 30px;
-        font-size: 0.8rem;
-        margin-right: 15px;
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 0.9rem !important;
+        margin-right: 20px !important;
+      }
+      
+      .timeline::before {
+        left: 18px !important;
       }
       
       /* Form optimization for small screens */
       .form-group input,
       .form-group textarea,
       .form-group select {
-        padding: 10px;
+        padding: 12px;
         font-size: 0.95rem;
       }
       
       /* Checklist compact */
       ul.checklist li {
-        padding: 10px 14px;
+        padding: 12px 16px;
         font-size: 0.9rem;
       }
     }
@@ -963,27 +980,28 @@
     /* Landscape Mobile Optimization */
     @media (max-width: 768px) and (orientation: landscape) {
       #hero {
-        min-height: 85vh !important;
-        max-height: 90vh !important;
+        min-height: 90vh !important;
+        max-height: 95vh !important;
       }
       
       .hero-logo {
-        width: clamp(100px, 15vw, 150px) !important;
-        margin: 10px auto 15px auto;
+        width: clamp(100px, 18vw, 140px) !important;
+        margin: 15px auto 20px auto !important;
       }
       
       #hero h1 {
-        font-size: clamp(1.6rem, 4vw, 2.2rem) !important;
+        font-size: clamp(1.7rem, 4.5vw, 2.3rem) !important;
       }
       
-      #hero .subheadline-hero {
-        font-size: clamp(0.9rem, 2.5vw, 1.1rem) !important;
+      .subheadline-hero {
+        font-size: clamp(0.95rem, 3vw, 1.1rem) !important;
+        min-height: 45px !important;
       }
     }
     
     /* High DPI Display Optimization */
     @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-      .brand-logo, .car-img {
+      .brand-logo {
         image-rendering: -webkit-optimize-contrast;
         image-rendering: crisp-edges;
       }
@@ -1004,7 +1022,7 @@
     /* Touch target spacing */
     @media (max-width: 768px) {
       .cta-btn + .cta-btn {
-        margin-top: 8px;
+        margin-top: 0;
       }
     }
   </style>
@@ -1021,7 +1039,6 @@
         <source src="content/car_hero.mp4" type="video/mp4">
         <img src="content/hero-screen.png" alt="Sports Car" style="width:100%;height:100%;object-fit:cover;">
       </video>
-      
       <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(17,18,22,0.55);z-index:-1;"></div>
       <div class="parallax-bg" style="background-image: url('content/hero-screen.png');"></div>
       
@@ -1029,14 +1046,13 @@
       <img src="content/website_logo/logo.png" alt="Company Logo" class="hero-logo" id="heroLogo">
       
       <h1>We Don't Sell Cars — We Deliver Leverage.</h1>
-      <div class="subheadline-hero" id="slogan-text" style="height: 80px; opacity: 0; transform: translateY(40px); transition: opacity 1s cubic-bezier(0.25,0.8,0.25,1), transform 1s cubic-bezier(0.25,0.8,0.25,1);">
+      <div class="subheadline-hero" id="slogan-text">
         We connect serious buyers in Europe with real savings on high-performance cars — directly from the UAE.
       </div>
       
-      <div style="margin-top: 80px;"></div>
-      <div class="cta-button-group" style="opacity: 0; transform: translateY(30px); transition: opacity 0.8s, transform 0.8s;">
-        <a href="#inquiry" class="cta-btn" style="padding: 12px 24px; font-size: 1rem;"><i class="fas fa-file-invoice-dollar" style="margin-right: 10px;"></i>Start Inquiry</a>
-        <a href="#how" class="cta-btn" id="howItWorksBtn" style="padding: 12px 24px; font-size: 1rem;"><i class="fas fa-lightbulb" style="margin-right: 10px;"></i>How it works</a>
+      <div class="cta-button-group">
+        <a href="#inquiry" class="cta-btn"><i class="fas fa-file-invoice-dollar" style="margin-right: 10px;"></i>Start Inquiry</a>
+        <a href="#how" class="cta-btn" id="howItWorksBtn"><i class="fas fa-lightbulb" style="margin-right: 10px;"></i>How it works</a>
       </div>
     </header>
 
@@ -1159,7 +1175,7 @@
       </div>
     </section>
   </div>
-
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
   <script>
@@ -1228,24 +1244,23 @@
         document.getElementById('hero').classList.add('visible');
       }, 350);
       
-      // Then animate slogan
+      // Then animate slogan - ensure it's visible
       setTimeout(function() {
         var slogan = document.getElementById('slogan-text');
-        slogan.style.opacity = 1;
-        slogan.style.transform = 'translateY(0)';
+        if (slogan) {
+          slogan.style.opacity = 1;
+          slogan.style.transform = 'translateY(0)';
+        }
       }, 700);
       
       // Finally animate CTA buttons
-      const isMobile = window.innerWidth <= 768;
-      const ctaDelay = isMobile ? 700 : 700;
-      
       setTimeout(() => {
         const cta = document.querySelector('#hero .cta-button-group');
         if (cta) {
           cta.style.opacity = 1;
           cta.style.transform = "translateY(0)";
         }
-      }, ctaDelay);
+      }, 900);
       
       // Hide preloader
       gsap.to("#preloader", {
