@@ -665,39 +665,6 @@
         margin: 20px auto 30px auto !important;
       }
       
-      /* MOBILE SLOGAN - ENSURE PERMANENT VISIBILITY */
-      .subheadline-hero {
-        font-size: clamp(1.05rem, 4vw, 1.25rem) !important;
-        line-height: 1.5 !important;
-        margin-bottom: 1.8em !important;
-        max-width: 90vw !important;
-        text-align: center !important;
-        padding: 0 15px !important;
-        /* CRITICAL: Force visibility on mobile */
-        opacity: 1 !important;
-        transform: translateY(0) !important;
-        transition: none !important;
-        visibility: visible !important;
-        display: block !important;
-        /* Better contrast for mobile */
-        text-shadow: 0 1px 3px rgba(0,0,0,0.3) !important;
-        /* Minimum height to prevent layout shift */
-        min-height: 60px !important;
-        /* Flexbox centering */
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        position: relative !important;
-        z-index: 10 !important;
-      }
-      
-      /* Ensure other subheadlines are also properly sized */
-      .subheadline, .subheadline-v2 {
-        font-size: clamp(1rem, 3.5vw, 1.15rem) !important;
-        line-height: 1.6 !important;
-        margin-bottom: 1.5em !important;
-      }
-      
       /* Hero CTA Buttons Mobile Optimization */
       .cta-button-group {
         flex-direction: column;
@@ -747,7 +714,6 @@
         padding: 16px 20px;
       }
       
-      /* TIMELINE ALIGNMENT FIX - IMPROVED */
       .timeline {
         flex-direction: column;
         align-items: flex-start;
@@ -805,7 +771,6 @@
         margin-right: 10px;
       }
       
-      /* BRAND LOGOS MOBILE OPTIMIZATION - LARGER SIZE */
       .brand-logos {
         gap: clamp(20px, 5vw, 35px) !important;
         justify-content: center;
@@ -941,18 +906,7 @@
         margin: 15px auto 25px auto !important;
       }
       
-      /* Slogan for small screens - ENSURE VISIBILITY */
-      .subheadline-hero {
-        font-size: clamp(1rem, 4.5vw, 1.15rem) !important;
-        padding: 0 10px !important;
-        min-height: 50px !important;
-        /* CRITICAL: Force visibility */
-        opacity: 1 !important;
-        transform: translateY(0) !important;
-        transition: none !important;
-        visibility: visible !important;
-        display: flex !important;
-      }
+      /* Remove mobile-specific .subheadline-hero rules */
       
       /* Button sizing for small screens */
       .cta-btn {
@@ -1021,16 +975,7 @@
         font-size: clamp(1.7rem, 4.5vw, 2.3rem) !important;
       }
       
-      .subheadline-hero {
-        font-size: clamp(0.95rem, 3vw, 1.1rem) !important;
-        min-height: 45px !important;
-        /* CRITICAL: Force visibility in landscape */
-        opacity: 1 !important;
-        transform: translateY(0) !important;
-        transition: none !important;
-        visibility: visible !important;
-        display: flex !important;
-      }
+      /* Remove mobile-specific .subheadline-hero rules */
     }
     
     /* High DPI Display Optimization */
