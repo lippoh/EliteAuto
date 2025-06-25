@@ -152,7 +152,7 @@
       position: relative;
       overflow: hidden;
       z-index: 1;
-      min-height: 48px; /* Touch-friendly minimum */
+      min-height: 48px;
     }
     
     .cta-btn::before {
@@ -182,6 +182,174 @@
     .cta-btn:focus {
       outline: 2px solid var(--gold);
       outline-offset: 2px;
+    }
+    
+    /* Enhanced Submit Button Styles */
+    .submit-btn {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--gold);
+      color: var(--bg-main);
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 18px 40px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      margin-top: 18px;
+      width: 100%;
+      min-height: 56px;
+      box-shadow: 0 4px 20px rgba(212,175,55,0.3);
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      overflow: hidden;
+      font-family: var(--font-main);
+    }
+    
+    .submit-btn:hover {
+      box-shadow: 0 8px 30px rgba(212,175,55,0.4);
+      transform: translateY(-2px);
+    }
+    
+    .submit-btn:focus {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+    }
+    
+    .submit-btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+    
+    /* Button Text */
+    .btn-text {
+      transition: all 0.3s ease;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Loading Spinner */
+    .btn-loader {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .spinner {
+      width: 24px;
+      height: 24px;
+      border: 3px solid rgba(17, 18, 22, 0.3);
+      border-top: 3px solid var(--bg-main);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    /* Checkmark SVG */
+    .btn-checkmark {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 32px;
+      height: 32px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .checkmark-circle {
+      stroke-dasharray: 166;
+      stroke-dashoffset: 166;
+      stroke-width: 2;
+      stroke-miterlimit: 10;
+      stroke: var(--bg-main);
+      fill: none;
+      animation: none;
+    }
+    
+    .checkmark-check {
+      stroke-dasharray: 48;
+      stroke-dashoffset: 48;
+      stroke-width: 3;
+      stroke-miterlimit: 10;
+      stroke: var(--bg-main);
+      animation: none;
+    }
+    
+    /* Button States */
+    .submit-btn.loading .btn-text {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    
+    .submit-btn.loading .btn-loader {
+      opacity: 1;
+    }
+    
+    .submit-btn.success {
+      background: #2ecc71;
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(46, 204, 113, 0.4);
+    }
+    
+    .submit-btn.success .btn-text,
+    .submit-btn.success .btn-loader {
+      opacity: 0;
+    }
+    
+    .submit-btn.success .btn-checkmark {
+      opacity: 1;
+    }
+    
+    .submit-btn.success .checkmark-circle {
+      stroke: white;
+      animation: stroke-circle 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+    }
+    
+    .submit-btn.success .checkmark-check {
+      stroke: white;
+      animation: stroke-check 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+    }
+    
+    .submit-btn.error {
+      background: #e74c3c;
+      animation: shake 0.5s ease-in-out;
+    }
+    
+    .submit-btn.error .btn-text {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .submit-btn.error .btn-loader {
+      opacity: 0;
+    }
+    
+    /* Checkmark Animations */
+    @keyframes stroke-circle {
+      100% {
+        stroke-dashoffset: 0;
+      }
+    }
+    
+    @keyframes stroke-check {
+      100% {
+        stroke-dashoffset: 0;
+      }
+    }
+    
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+      20%, 40%, 60%, 80% { transform: translateX(5px); }
     }
     
     /* Button Groups */
@@ -230,7 +398,6 @@
       overflow: hidden;
     }
     
-    /* Removed goldish backlight */
     #brands::before {
       display: none !important;
       content: none !important;
@@ -311,7 +478,6 @@
       transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
       position: relative;
       z-index: 1;
-      /* Removed image-rendering properties to prevent pixelation */
     }
     
     /* Special sizing for Porsche logo - also smaller */
@@ -391,6 +557,14 @@
       display: flex;
       align-items: center;
       border-left: 4px solid var(--gold);
+    }
+
+    #why-dubai ul.checklist li::before {
+      content: '\27A4';
+      color: var(--gold);
+      font-size: 1.3rem;
+      margin-right: 15px;
+      font-weight: normal;
     }
     
     ul.checklist li:hover {
@@ -488,7 +662,7 @@
       color: var(--white);
       font-family: var(--font-main);
       font-size: 1rem;
-      min-height: 44px; /* Touch-friendly */
+      min-height: 44px;
     }
     
     .form-group textarea {
@@ -502,6 +676,73 @@
       outline: 2px solid var(--gold);
       outline-offset: 2px;
       border-color: var(--gold);
+    }
+    
+    .form-group input:invalid,
+    .form-group textarea:invalid {
+      border-color: rgba(231, 76, 60, 0.5);
+    }
+    
+    .form-group input:valid,
+    .form-group textarea:valid {
+      border-color: rgba(46, 204, 113, 0.3);
+    }
+    
+    /* Form accessibility and validation styles */
+    .error-message {
+      color: #ff6b6b;
+      font-size: 0.85rem;
+      margin-top: 4px;
+      display: none;
+    }
+    
+    .help-text {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.85rem;
+      margin-top: 4px;
+    }
+    
+    .submit-status {
+      margin-top: 15px;
+      padding: 12px 20px;
+      border-radius: 8px;
+      text-align: center;
+      display: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .submit-status.success {
+      background: rgba(46, 204, 113, 0.1);
+      border: 1px solid #2ecc71;
+      color: #2ecc71;
+      display: block;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: slideUp 0.4s ease forwards;
+    }
+    
+    .submit-status.error {
+      background: rgba(231, 76, 60, 0.1);
+      border: 1px solid #e74c3c;
+      color: #e74c3c;
+      display: block;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: slideUp 0.4s ease forwards;
+    }
+    
+    @keyframes slideUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Required field indicator */
+    .form-group label span[aria-label="required"] {
+      color: var(--gold);
+      font-weight: bold;
     }
     
     /* Preloader */
@@ -528,11 +769,6 @@
       animation: spin 1s linear infinite;
     }
     
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    
     /* Floating Shapes */
     .floating-shapes {
       position: absolute;
@@ -552,208 +788,269 @@
       background: var(--gold);
     }
     
-
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      header, section {
+        padding: 50px 6vw;
+        margin-bottom: 25px;
+        border-radius: 16px;
+      }
+      
+      .cta-btn {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+      
+      .timeline {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .timeline::before {
+        top: 0;
+        bottom: 0;
+        left: 20px;
+        width: 3px;
+        height: 100%;
+      }
+      
+      .timeline-step {
+        display: flex;
+        align-items: center;
+        margin-bottom: 30px;
+        width: 100%;
+      }
+      
+      .timeline-step .step-circle {
+        margin: 0 20px 0 0;
+        flex-shrink: 0;
+      }
+      
+      .timeline-step .step-content {
+        text-align: left;
+      }
+      
+      #hero {
+        min-height: 420px !important;
+        height: 60vh !important;
+        max-height: 600px !important;
+        background-size: cover !important;
+        background-position: center center !important;
+        background-repeat: no-repeat !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        overflow: hidden;
+      }
+      
+      #hero .subheadline-hero {
+        min-height: 48px !important;
+        max-width: 95vw !important;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: none !important;
+      }
+    }
+    
     /* Enhanced Mobile Timeline - How Section */
-@media (max-width: 768px) {
-  #how .timeline {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 25px;
-    margin: 40px 0;
-  }
-  
-  #how .timeline::before {
-    display: none; /* Remove horizontal line */
-  }
-  
-  #how .timeline-step {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.02);
-    border-radius: 12px;
-    border-left: 4px solid var(--gold);
-    margin-bottom: 0;
-  }
-  
-  #how .timeline-step .step-circle {
-    margin: 0;
-    flex-shrink: 0;
-    width: 35px;
-    height: 35px;
-    font-size: 0.9rem;
-  }
-  
-  #how .timeline-step .step-content {
-    text-align: left;
-    flex: 1;
-  }
-  
-  #how .timeline-step .step-content h3 {
-    font-size: 1.1rem;
-    margin-bottom: 8px;
-    line-height: 1.3;
-  }
-  
-  #how .timeline-step .step-content p {
-    font-size: 0.9rem;
-    line-height: 1.4;
-    opacity: 0.9;
-  }
-  
-  /* Checklist improvements */
-  #how ul.checklist {
-    gap: 12px;
-    margin-top: 25px;
-  }
-  
-  #how ul.checklist li {
-    padding: 12px 16px;
-    font-size: 0.9rem;
-    border-radius: 8px;
-  }
-  
-  #how ul.checklist li::before {
-    font-size: 1rem;
-    margin-right: 12px;
-  }
-}
-
-/* Enhanced Mobile Why Dubai Section */
-@media (max-width: 768px) {
-  #why-dubai {
-    padding: 50px 6vw;
-  }
-  
-  #why-dubai h2 {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-    line-height: 1.2;
-  }
-  
-  #why-dubai ul.checklist {
-    gap: 15px;
-    margin-top: 30px;
-  }
-  
-  #why-dubai ul.checklist li {
-    padding: 16px 18px;
-    font-size: 0.95rem;
-    line-height: 1.5;
-    border-radius: 10px;
-    background: var(--charcoal);
-    border-left: 3px solid var(--gold);
-  }
-  
-  #why-dubai ul.checklist li::before {
-    font-size: 1.1rem;
-    margin-right: 14px;
-    color: var(--gold);
-  }
-  
-  #why-dubai ul.checklist li:hover {
-    transform: translateX(5px); /* Reduced movement for mobile */
-  }
-}
-
-/* Enhanced Mobile Inquiry Section */
-@media (max-width: 768px) {
-  #inquiry {
-    padding: 50px 6vw;
-  }
-  
-  #inquiry h2 {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-    text-align: center;
-  }
-  
-  #inquiry .subheadline-v2 {
-    font-size: 1rem;
-    line-height: 1.5;
-    text-align: center;
-    margin-bottom: 2rem;
-    max-width: 100%;
-  }
-  
-  /* Mobile CTA Buttons - Stack Vertically */
-  #inquiry .cta-buttons.inquiry-inline-ctas {
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: 30px;
-  }
-  
-  #inquiry .cta-buttons.inquiry-inline-ctas .cta-btn {
-    flex: none;
-    width: 100%;
-    max-width: none;
-    padding: 16px 20px;
-    font-size: 0.95rem;
-    text-align: center;
-    white-space: normal;
-    line-height: 1.3;
-  }
-  
-  /* Contact Form Mobile Optimization */
-  #inquiry .contact-form {
-    gap: 18px;
-    margin-top: 25px;
-    max-width: 100%;
-  }
-  
-  #inquiry .form-group label {
-    font-size: 0.9rem;
-    margin-bottom: 6px;
-    font-weight: 600;
-  }
-  
-  #inquiry .form-group input,
-  #inquiry .form-group textarea,
-  #inquiry .form-group select {
-    padding: 16px;
-    font-size: 1rem;
-    border-radius: 8px;
-    min-height: 48px; /* Touch-friendly */
-    -webkit-appearance: none;
-    appearance: none;
-  }
-  
-  #inquiry .form-group textarea {
-    min-height: 120px;
-    resize: vertical;
-  }
-  
-  #inquiry .contact-form .cta-btn {
-    padding: 18px 24px;
-    font-size: 1.1rem;
-    margin-top: 10px;
-    min-height: 52px;
-  }
-}
-
-/* Extra Small Mobile Devices */
-@media (max-width: 480px) {
-  #inquiry .cta-buttons.inquiry-inline-ctas .cta-btn {
-    padding: 14px 16px;
-    font-size: 0.9rem;
-  }
-  
-  #inquiry .form-group input,
-  #inquiry .form-group textarea,
-  #inquiry .form-group select {
-    padding: 14px;
-    font-size: 0.95rem;
-  }
-  
-  #inquiry .contact-form .cta-btn {
-    padding: 16px 20px;
-    font-size: 1rem;
-  }
-}
-
-
-  
+    @media (max-width: 768px) {
+      #how .timeline {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 25px;
+        margin: 40px 0;
+      }
+      
+      #how .timeline::before {
+        display: none;
+      }
+      
+      #how .timeline-step {
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 12px;
+        border-left: 4px solid var(--gold);
+        margin-bottom: 0;
+      }
+      
+      #how .timeline-step .step-circle {
+        margin: 0;
+        flex-shrink: 0;
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+      }
+      
+      #how .timeline-step .step-content {
+        text-align: left;
+        flex: 1;
+      }
+      
+      #how .timeline-step .step-content h3 {
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+        line-height: 1.3;
+      }
+      
+      #how .timeline-step .step-content p {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        opacity: 0.9;
+      }
+      
+      #how ul.checklist {
+        gap: 12px;
+        margin-top: 25px;
+      }
+      
+      #how ul.checklist li {
+        padding: 12px 16px;
+        font-size: 0.9rem;
+        border-radius: 8px;
+      }
+      
+      #how ul.checklist li::before {
+        font-size: 1rem;
+        margin-right: 12px;
+      }
+    }
+    
+    /* Enhanced Mobile Why Dubai Section */
+    @media (max-width: 768px) {
+      #why-dubai {
+        padding: 50px 6vw;
+      }
+      
+      #why-dubai h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        line-height: 1.2;
+      }
+      
+      #why-dubai ul.checklist {
+        gap: 15px;
+        margin-top: 30px;
+      }
+      
+      #why-dubai ul.checklist li {
+        padding: 16px 18px;
+        font-size: 0.95rem;
+        line-height: 1.5;
+        border-radius: 10px;
+        background: var(--charcoal);
+        border-left: 3px solid var(--gold);
+      }
+      
+      #why-dubai ul.checklist li::before {
+        font-size: 1.1rem;
+        margin-right: 14px;
+        color: var(--gold);
+      }
+      
+      #why-dubai ul.checklist li:hover {
+        transform: translateX(5px);
+      }
+    }
+    
+    /* Enhanced Mobile Inquiry Section */
+    @media (max-width: 768px) {
+      #inquiry {
+        padding: 50px 6vw;
+      }
+      
+      #inquiry h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+      
+      #inquiry .subheadline-v2 {
+        font-size: 1rem;
+        line-height: 1.5;
+        text-align: center;
+        margin-bottom: 2rem;
+        max-width: 100%;
+      }
+      
+      #inquiry .cta-buttons.inquiry-inline-ctas {
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 30px;
+      }
+      
+      #inquiry .cta-buttons.inquiry-inline-ctas .cta-btn {
+        flex: none;
+        width: 100%;
+        max-width: none;
+        padding: 16px 20px;
+        font-size: 0.95rem;
+        text-align: center;
+        white-space: normal;
+        line-height: 1.3;
+      }
+      
+      #inquiry .contact-form {
+        gap: 18px;
+        margin-top: 25px;
+        max-width: 100%;
+      }
+      
+      #inquiry .form-group label {
+        font-size: 0.9rem;
+        margin-bottom: 6px;
+        font-weight: 600;
+      }
+      
+      #inquiry .form-group input,
+      #inquiry .form-group textarea,
+      #inquiry .form-group select {
+        padding: 16px;
+        font-size: 1rem;
+        border-radius: 8px;
+        min-height: 48px;
+        -webkit-appearance: none;
+        appearance: none;
+      }
+      
+      #inquiry .form-group textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+      
+      #inquiry .contact-form .submit-btn {
+        padding: 18px 24px;
+        font-size: 1.1rem;
+        margin-top: 10px;
+        min-height: 52px;
+      }
+    }
+    
+    /* Extra Small Mobile Devices */
+    @media (max-width: 480px) {
+      #inquiry .cta-buttons.inquiry-inline-ctas .cta-btn {
+        padding: 14px 16px;
+        font-size: 0.9rem;
+      }
+      
+      #inquiry .form-group input,
+      #inquiry .form-group textarea,
+      #inquiry .form-group select {
+        padding: 14px;
+        font-size: 0.95rem;
+      }
+      
+      #inquiry .contact-form .submit-btn {
+        padding: 16px 20px;
+        font-size: 1rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -864,24 +1161,49 @@
         <a href="tel:+306988051698" class="cta-btn"><i class="fas fa-phone-alt" style="margin-right: 10px;"></i> +30 6988051698 – Greece</a>
         <a href="tel:+359882409266" class="cta-btn"><i class="fas fa-phone-alt" style="margin-right: 10px;"></i> +359 882409266 – Bulgaria</a>
       </div>
+      
       <div class="contact-form">
-        <div class="form-group">
-          <label for="name">Your Name</label>
-          <input type="text" id="name" placeholder="John Smith" required>
-        </div>
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" placeholder="john@example.com" required>
-        </div>
-        <div class="form-group">
-          <label for="phone">Phone Number</label>
-          <input type="tel" id="phone" placeholder="+30 123 456 7890">
-        </div>
-        <div class="form-group">
-          <label for="message">Your Message</label>
-          <textarea id="message" rows="4" placeholder="Tell us about your requirements..." required></textarea>
-        </div>
-        <button type="submit" class="cta-btn" style="width: 100%;">Submit Inquiry</button>
+        <form action="https://formspree.io/f/mjkrpepy" method="POST" id="contactForm">
+          <!-- Honeypot spam protection -->
+          <input type="text" name="_gotcha" style="display:none !important" tabindex="-1" autocomplete="off">
+          
+          <div class="form-group">
+            <label for="name">Your Name <span aria-label="required">*</span></label>
+            <input type="text" id="name" name="name" placeholder="John Smith" required aria-describedby="name-error">
+            <div id="name-error" class="error-message" role="alert" aria-live="polite"></div>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email Address <span aria-label="required">*</span></label>
+            <input type="email" id="email" name="email" placeholder="john@example.com" required aria-describedby="email-error">
+            <div id="email-error" class="error-message" role="alert" aria-live="polite"></div>
+          </div>
+          
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="+30 123 456 7890" aria-describedby="phone-help">
+            <div id="phone-help" class="help-text">Optional - We'll call you back if needed</div>
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Your Message <span aria-label="required">*</span></label>
+            <textarea id="message" name="message" rows="4" placeholder="Tell us about your requirements..." required aria-describedby="message-error"></textarea>
+            <div id="message-error" class="error-message" role="alert" aria-live="polite"></div>
+          </div>
+          
+          <button type="submit" class="submit-btn" id="submitButton" aria-describedby="submit-status">
+            <span class="btn-text">Submit Inquiry</span>
+            <div class="btn-loader">
+              <div class="spinner"></div>
+            </div>
+            <svg class="btn-checkmark" viewBox="0 0 52 52">
+              <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+              <path class="checkmark-check" fill="none" d="m14.1 27.2 7.1 7.2 16.7-16.8"/>
+            </svg>
+          </button>
+          
+          <div id="submit-status" class="submit-status" role="status" aria-live="polite"></div>
+        </form>
       </div>
     </section>
 
@@ -1099,25 +1421,190 @@
           });
         });
       });
+    }
+    
+    // Enhanced form submission handling with animation
+    document.addEventListener('DOMContentLoaded', function() {
+      const contactForm = document.getElementById('contactForm');
+      const submitButton = document.getElementById('submitButton');
+      const submitStatus = document.getElementById('submit-status');
       
-      const contactForm = document.querySelector('.contact-form');
       if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', async function(e) {
           e.preventDefault();
           
-          const name = document.getElementById('name').value;
-          const email = document.getElementById('email').value;
-          const message = document.getElementById('message').value;
+          // Clear previous status
+          submitStatus.style.display = 'none';
+          submitStatus.className = 'submit-status';
           
-          if (name && email && message) {
-            alert('Thank you for your inquiry! We will contact you shortly.');
-            contactForm.reset();
-          } else {
-            alert('Please fill in all required fields.');
+          // Validate form before submission
+          if (!validateForm()) {
+            showError('Please fix the errors above before submitting.');
+            return false;
+          }
+          
+          // Start loading animation
+          submitButton.classList.add('loading');
+          submitButton.disabled = true;
+          
+          try {
+            // Submit form data to Formspree
+            const formData = new FormData(contactForm);
+            const response = await fetch(contactForm.action, {
+              method: 'POST',
+              body: formData,
+              headers: {
+                'Accept': 'application/json'
+              }
+            });
+            
+            if (response.ok) {
+              // Success animation
+              setTimeout(() => {
+                submitButton.classList.remove('loading');
+                submitButton.classList.add('success');
+                showSuccess('Thank you! Your inquiry has been sent successfully. We\'ll get back to you within 24 hours.');
+                
+                // Reset form after success
+                setTimeout(() => {
+                  contactForm.reset();
+                  resetButton();
+                }, 3000);
+              }, 1000);
+            } else {
+              throw new Error('Form submission failed');
+            }
+          } catch (error) {
+            // Error animation
+            setTimeout(() => {
+              submitButton.classList.remove('loading');
+              submitButton.classList.add('error');
+              showError('Sorry, there was an error sending your message. Please try again.');
+              
+              setTimeout(() => {
+                resetButton();
+              }, 3000);
+            }, 1000);
           }
         });
+        
+        // Real-time validation
+        const inputs = contactForm.querySelectorAll('input[required], textarea[required]');
+        inputs.forEach(input => {
+          input.addEventListener('blur', function() {
+            validateField(this);
+          });
+          
+          input.addEventListener('input', function() {
+            clearFieldError(this);
+            if (submitButton.classList.contains('error')) {
+              resetButton();
+            }
+          });
+        });
       }
-    }
+      
+      function resetButton() {
+        submitButton.classList.remove('loading', 'success', 'error');
+        submitButton.disabled = false;
+      }
+      
+      function showSuccess(message) {
+        submitStatus.textContent = message;
+        submitStatus.className = 'submit-status success';
+      }
+      
+      function showError(message) {
+        submitStatus.textContent = message;
+        submitStatus.className = 'submit-status error';
+      }
+      
+      function validateForm() {
+        let isValid = true;
+        const requiredFields = contactForm.querySelectorAll('input[required], textarea[required]');
+        
+        requiredFields.forEach(field => {
+          if (!validateField(field)) {
+            isValid = false;
+          }
+        });
+        
+        return isValid;
+      }
+      
+      function validateField(field) {
+        const errorElement = document.getElementById(field.id + '-error');
+        let isValid = true;
+        let errorMessage = '';
+        
+        // Check if field is empty
+        if (!field.value.trim()) {
+          errorMessage = `${field.labels[0].textContent.replace(' *', '')} is required`;
+          isValid = false;
+        }
+        // Email validation
+        else if (field.type === 'email' && !isValidEmail(field.value)) {
+          errorMessage = 'Please enter a valid email address';
+          isValid = false;
+        }
+        
+        if (!isValid && errorElement) {
+          errorElement.textContent = errorMessage;
+          errorElement.style.display = 'block';
+          field.setAttribute('aria-invalid', 'true');
+        } else if (errorElement) {
+          errorElement.style.display = 'none';
+          field.setAttribute('aria-invalid', 'false');
+        }
+        
+        return isValid;
+      }
+      
+      function clearFieldError(field) {
+        const errorElement = document.getElementById(field.id + '-error');
+        if (errorElement) {
+          errorElement.style.display = 'none';
+        }
+        field.setAttribute('aria-invalid', 'false');
+      }
+      
+      function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+      }
+      
+      // Improve mobile form experience
+      const formInputs = document.querySelectorAll('#inquiry input, #inquiry textarea, #inquiry select');
+      
+      formInputs.forEach(input => {
+        // Add focus styling for better mobile UX
+        input.addEventListener('focus', function() {
+          this.parentElement.style.transform = 'scale(1.02)';
+          this.parentElement.style.transition = 'transform 0.2s ease';
+        });
+        
+        input.addEventListener('blur', function() {
+          this.parentElement.style.transform = 'scale(1)';
+        });
+      });
+      
+      // Smooth scroll for mobile CTA buttons
+      const ctaButtons = document.querySelectorAll('#inquiry .cta-btn[href^="#"]');
+      ctaButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+          if (window.innerWidth <= 768) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+              target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              });
+            }
+          }
+        });
+      });
+    });
     
     // Smooth scroll to How It Works section
     document.addEventListener('DOMContentLoaded', function() {
@@ -1138,42 +1625,6 @@
         });
       }
     });
-
-    // Enhanced mobile form handling
-document.addEventListener('DOMContentLoaded', function() {
-  // Improve mobile form experience
-  const formInputs = document.querySelectorAll('#inquiry input, #inquiry textarea, #inquiry select');
-  
-  formInputs.forEach(input => {
-    // Add focus styling for better mobile UX
-    input.addEventListener('focus', function() {
-      this.parentElement.style.transform = 'scale(1.02)';
-      this.parentElement.style.transition = 'transform 0.2s ease';
-    });
-    
-    input.addEventListener('blur', function() {
-      this.parentElement.style.transform = 'scale(1)';
-    });
-  });
-  
-  // Smooth scroll for mobile CTA buttons
-  const ctaButtons = document.querySelectorAll('#inquiry .cta-btn[href^="#"]');
-  ctaButtons.forEach(button => {
-    button.addEventListener('click', function(e) {
-      if (window.innerWidth <= 768) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
-      }
-    });
-  });
-});
-
   </script>
 </body>
 </html>
