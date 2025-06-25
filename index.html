@@ -583,11 +583,11 @@
     /* Hero Section */
     #hero {
       position: relative;
-      min-height: 45vh;
+      min-height: 370px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      padding: 36px 5vw;
+      justify-content: flex-start;
+      padding: 24px 5vw;
       margin-top: 40px;
       opacity: 0;
       transform: translateY(40px);
@@ -868,7 +868,7 @@
       }
       
       #hero {
-        min-height: 480px !important;
+        min-height: 370px !important;
         height: auto !important;
         max-height: none !important;
         background-size: cover !important;
@@ -876,15 +876,16 @@
         background-repeat: no-repeat !important;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         box-sizing: border-box;
         overflow: visible;
-        padding-bottom: 40px !important;
+        padding-top: 24px !important;
+        padding-bottom: 24px !important;
       }
       
       #hero .subheadline-hero {
-        min-height: 48px !important;
+        min-height: 32px !important;
         max-width: 95vw !important;
         width: 100%;
         display: flex;
@@ -898,8 +899,8 @@
         align-items: stretch;
         gap: 15px !important;
         width: 100%;
-        max-width: 350px;
-        margin: 30px auto 0 auto;
+        max-width: 340px;
+        margin-top: 10px !important;
       }
       
       .cta-btn {
