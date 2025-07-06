@@ -595,17 +595,18 @@
       background: var(--bg-main);
     }
     
-    ul.checklist li::before {
-      content: '✓';
-      background: var(--gold-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-fill-color: transparent;
-      margin-right: 15px;
-      font-weight: bold;
-      font-size: 1.2rem;
-    }
+ul.checklist li::before {
+  content: '✓';
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  text-fill-color: transparent;
+  margin-right: 15px;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
     
     /* Hero Section */
     #hero {
