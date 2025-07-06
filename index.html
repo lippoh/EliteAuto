@@ -19,29 +19,24 @@
       --font-main: 'Montserrat', Arial, sans-serif;
       --black: #000;
 
-      --gold-gradient: linear-gradient(
-          145deg,
-          #ffd700 0%,
-          #ffed4a 12%,
-          #f4d03f 25%,
-          #d4af37 40%,
-          #b8860b 50%,
-          #daa520 60%,
-          #f4d03f 75%,
-          #ffed4a 88%,
-          #ffd700 100%
-      );
-      --gold-btn: linear-gradient(135deg, 
-          #ffd700 0%,
-          #ffed4a 15%,
-          #d4af37 35%,
-          #b8860b 50%,
-          #daa520 65%,
-          #f4d03f 85%,
-          #ffd700 100%
-      );
-    }
-    
+--gold-gradient: linear-gradient(
+  145deg,
+  #e6d45a 0%,     /* pale gold */
+  #d4af37 25%,    /* your current gold */
+  #b8a142 50%,    /* muted gold */
+  #9f8b38 75%,    /* cooler gold */
+  #8a7730 100%    /* deep cool gold */
+);
+
+--gold-btn: linear-gradient(
+  135deg,
+  #d4af37 0%,     /* your current gold */
+  #e6d45a 30%,    /* pale gold */
+  #b8a142 60%,    /* muted gold */
+  #9f8b38 100%    /* cooler gold */
+);
+
+
     
     * { 
       box-sizing: border-box; 
@@ -1102,7 +1097,7 @@
         line-height: 1.5;
         border-radius: 10px;
         background: var(--charcoal);
-        border-left: 3px solid var(--gold);
+        border-left: 3px solid var(--gold-gradient);
       }
       
       #why-dubai ul.checklist li::before {
