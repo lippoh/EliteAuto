@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Elite Auto</title>
   <link rel="icon" type="image/x-icon" href="content/website_favcon/favicon/favicon.ico">
+  <!-- Android Chrome favicon -->
+  <link rel="icon" type="image/png" sizes="192x192" href="content/website_favcon/favicon/android-chrome-192x192.png">
+  <!-- Apple Touch Icon -->
+  <link rel="apple-touch-icon" href="content/website_favcon/favicon/apple-touch-icon.png">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -1764,6 +1768,25 @@ ul.checklist li::before {
             var windowHeight = window.innerHeight;
             var scrollTo = sectionY - (windowHeight - sectionHeight) / 2;
             window.scrollTo({ top: scrollTo, behavior: 'smooth' });
+          }
+        });
+      }
+      // Smooth scroll for hero "Submit Inquiry" button
+      var heroInquiryBtn = document.querySelector('#hero .cta-btn[href="#inquiry"]');
+      if (heroInquiryBtn) {
+        heroInquiryBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          var inquirySection = document.getElementById('inquiry');
+          if (inquirySection) {
+        var rect = inquirySection.getBoundingClientRect();
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        var sectionY = rect.top + scrollTop;
+        var sectionHeight = inquirySection.offsetHeight;
+        var windowHeight = window.innerHeight;
+        // Offset so the section appears a bit higher (e.g., 80px more up)
+        var offset = 80;
+        var scrollTo = sectionY - (windowHeight - sectionHeight) / 2 - offset;
+        window.scrollTo({ top: scrollTo, behavior: 'smooth' });
           }
         });
       }
