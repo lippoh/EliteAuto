@@ -23,24 +23,22 @@
       --font-main: 'Montserrat', Arial, sans-serif;
       --black: #000;
 
---gold-gradient: linear-gradient(
-  145deg,
-  #e6d45a 0%,     /* pale gold */
-  #d4af37 25%,    /* your current gold */
-  #b8a142 50%,    /* muted gold */
-  #9f8b38 75%,    /* cooler gold */
-  #8a7730 100%    /* deep cool gold */
-);
+      --gold-gradient: linear-gradient(
+        145deg,
+        #e6d45a 0%,     /* pale gold */
+        #d4af37 25%,    /* your current gold */
+        #b8a142 50%,    /* muted gold */
+        #9f8b38 75%,    /* cooler gold */
+        #8a7730 100%    /* deep cool gold */
+      );
 
---gold-btn: linear-gradient(
-  135deg,
-  #d4af37 0%,     /* your current gold */
-  #e6d45a 30%,    /* pale gold */
-  #b8a142 60%,    /* muted gold */
-  #9f8b38 100%    /* cooler gold */
-);
-
-
+      --gold-btn: linear-gradient(
+        135deg,
+        #d4af37 0%,     /* your current gold */
+        #e6d45a 30%,    /* pale gold */
+        #b8a142 60%,    /* muted gold */
+        #9f8b38 100%    /* cooler gold */
+      );
     
     * { 
       box-sizing: border-box; 
@@ -1753,44 +1751,32 @@ ul.checklist li::before {
       });
     });
     
-    // Smooth scroll to How It Works section
-    document.addEventListener('DOMContentLoaded', function() {
-      var howBtn = document.getElementById('howItWorksBtn');
-      if (howBtn) {
-        howBtn.addEventListener('click', function(e) {
-          e.preventDefault();
-          var howSection = document.getElementById('how');
-          if (howSection) {
-            var rect = howSection.getBoundingClientRect();
-            var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            var sectionY = rect.top + scrollTop;
-            var sectionHeight = howSection.offsetHeight;
-            var windowHeight = window.innerHeight;
-            var scrollTo = sectionY - (windowHeight - sectionHeight) / 2;
-            window.scrollTo({ top: scrollTo, behavior: 'smooth' });
-          }
-        });
-      }
-      // Smooth scroll for hero "Submit Inquiry" button
-      var heroInquiryBtn = document.querySelector('#hero .cta-btn[href="#inquiry"]');
-      if (heroInquiryBtn) {
-        heroInquiryBtn.addEventListener('click', function(e) {
-          e.preventDefault();
-          var inquirySection = document.getElementById('inquiry');
-          if (inquirySection) {
-        var rect = inquirySection.getBoundingClientRect();
-        var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        var sectionY = rect.top + scrollTop;
-        var sectionHeight = inquirySection.offsetHeight;
-        var windowHeight = window.innerHeight;
-        // Offset so the section appears a bit higher (e.g., 80px more up)
-        var offset = 80;
-        var scrollTo = sectionY - (windowHeight - sectionHeight) / 2 - offset;
-        window.scrollTo({ top: scrollTo, behavior: 'smooth' });
-          }
-        });
-      }
+  // Simple smooth scroll for all anchor links
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        var targetId = this.getAttribute('href').substring(1);
+        var targetSection = document.getElementById(targetId);
+        
+        if (targetSection) {
+          // Calculate center position
+          var sectionRect = targetSection.getBoundingClientRect();
+          var absoluteTop = sectionRect.top + window.pageYOffset;
+          var sectionHeight = targetSection.offsetHeight;
+          var windowHeight = window.innerHeight;
+          
+          // Center the section in the viewport
+          var centerPosition = absoluteTop - (windowHeight - sectionHeight) / 2;
+          
+          window.scrollTo({
+            top: centerPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
     });
+  });
   </script>
 </body>
 </html>
