@@ -17,7 +17,30 @@
       --accent: #222;
       --font-main: 'Montserrat', Arial, sans-serif;
       --black: #000;
+
+      --gold-gradient: linear-gradient(
+          145deg,
+          #ffd700 0%,
+          #ffed4a 12%,
+          #f4d03f 25%,
+          #d4af37 40%,
+          #b8860b 50%,
+          #daa520 60%,
+          #f4d03f 75%,
+          #ffed4a 88%,
+          #ffd700 100%
+      );
+      --gold-btn: linear-gradient(135deg, 
+          #ffd700 0%,
+          #ffed4a 15%,
+          #d4af37 35%,
+          #b8860b 50%,
+          #daa520 65%,
+          #f4d03f 85%,
+          #ffd700 100%
+      );
     }
+    
     
     * { 
       box-sizing: border-box; 
@@ -137,7 +160,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      background: var(--gold);
+      background: var(--gold-btn);
       color: var(--bg-main);
       font-weight: 700;
       font-size: 1.1rem;
@@ -190,7 +213,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: var(--gold);
+      background: var(--gold-btn);
       color: var(--bg-main);
       font-weight: 700;
       font-size: 1.1rem;
@@ -506,7 +529,7 @@
       left: 0;
       right: 0;
       height: 3px;
-      background: var(--gold);
+      background: var(--gold-gradient);
       z-index: 1;
     }
     
@@ -520,7 +543,7 @@
     .timeline-step .step-circle {
       width: 40px;
       height: 40px;
-      background: var(--gold);
+      background: var(--gold-btn);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -556,12 +579,16 @@
       transition: all 0.3s ease;
       display: flex;
       align-items: center;
-      border-left: 4px solid var(--gold);
+      border-left: 4px solid var(--gold-gradient);
     }
     
     #why-dubai ul.checklist li::before {
       content: '\27A4';
-      color: var(--gold);
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
       font-size: 1.3rem;
       margin-right: 15px;
       font-weight: normal;
@@ -574,7 +601,11 @@
     
     ul.checklist li::before {
       content: '✓';
-      color: var(--gold);
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
       margin-right: 15px;
       font-weight: bold;
       font-size: 1.2rem;
@@ -753,7 +784,7 @@
     
     /* Required field indicator */
     .form-group label span[aria-label="required"] {
-      color: var(--gold);
+      color: var(--gold-gradient);
       font-weight: bold;
     }
     
@@ -1076,7 +1107,11 @@
       #why-dubai ul.checklist li::before {
         font-size: 1.1rem;
         margin-right: 14px;
-        color: var(--gold);
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
       }
       
       #why-dubai ul.checklist li:hover {
