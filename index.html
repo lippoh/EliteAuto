@@ -1145,6 +1145,24 @@
         transform: translateX(5px);
       }
     }
+
+      /* Fix for inquiry section buttons */
+    .cta-buttons.inquiry-inline-ctas {
+      flex-direction: column;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    
+    .cta-buttons.inquiry-inline-ctas .cta-btn {
+      flex: none;
+      width: 100%;
+      max-width: none;
+      padding: 16px 20px;
+      font-size: 0.95rem;
+      white-space: normal;
+      line-height: 1.3;
+      text-align: center;
+    }
   </style>
 
   <script>
