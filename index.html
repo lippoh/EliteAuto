@@ -11,14 +11,36 @@
   <link rel="apple-touch-icon" href="content/website_favcon/favicon/apple-touch-icon.png">
   
   <style>
-    /* Critical CSS - Font Awesome Icons (Inlined for Performance) */
+    /* Critical CSS - Font Awesome Icons (Optimized for Performance) */
     .fas{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;display:var(--fa-display,inline-block);font-style:normal;font-variant:normal;line-height:1;text-rendering:auto}
     
-    @font-face{font-family:"Font Awesome 6 Free";font-style:normal;font-weight:400;font-display:block;src:url('content/fonts/fontawesome-free-6.7.2-web/webfonts/fa-regular-400.woff2') format("woff2"),url('content/fonts/fontawesome-free-6.7.2-web/webfonts/fa-regular-400.ttf') format("truetype")}
+    /* Optimized Font Awesome @font-face with font-display: swap */
+    @font-face {
+      font-family: "Font Awesome 6 Free";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('content/fonts/fontawesome-free-6.7.2-web/webfonts/fa-regular-400.woff2') format("woff2"),
+           url('content/fonts/fontawesome-free-6.7.2-web/webfonts/fa-regular-400.ttf') format("truetype");
+    }
     
-    @font-face{font-family:"Font Awesome 6 Free";font-style:normal;font-weight:900;font-display:block;src:url('content/fonts/fontawesome-free-6.7.2-web/webfonts/fa-solid-900.woff2') format("woff2"),url('content/fonts/fontawesome-free-6.7.2-web/webfonts/fa-solid-900.ttf') format("truetype")}
+    @font-face {
+      font-family: "Font Awesome 6 Free";
+      font-style: normal;
+      font-weight: 900;
+      font-display: swap;
+      src: url('content/fonts/fontawesome-free-6.7.2-web/webfonts/fa-solid-900.woff2') format("woff2"),
+           url('content/fonts/fontawesome-free-6.7.2-web/webfonts/fa-solid-900.ttf') format("truetype");
+    }
     
-    @font-face{font-family:"Font Awesome 6 Brands";font-style:normal;font-weight:400;font-display:block;src:url('content/fonts/fontawesome-free-6.7.2-web/webfonts/fa-brands-400.woff2') format("woff2"),url('content/fonts/fontawesome-free-6.7.2-web/webfonts/fa-brands-400.ttf') format("truetype")}
+    @font-face {
+      font-family: "Font Awesome 6 Brands";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('content/fonts/fontawesome-free-6.7.2-web/webfonts/fa-brands-400.woff2') format("woff2"),
+           url('content/fonts/fontawesome-free-6.7.2-web/webfonts/fa-brands-400.ttf') format("truetype");
+    }
     
     .fas:before{content:var(--fa)}.fas{font-family:"Font Awesome 6 Free";font-weight:900}
     .fab{font-family:"Font Awesome 6 Brands";font-weight:400}
@@ -31,7 +53,7 @@
     :host,:root{--fa-font-regular:normal 400 1em/1 "Font Awesome 6 Free"}
     :host,:root{--fa-style-family-classic:"Font Awesome 6 Free";--fa-font-solid:normal 900 1em/1 "Font Awesome 6 Free"}
 
-    /* Local Montserrat Font Faces */
+    /* Local Montserrat Font Faces (already optimized) */
     @font-face {
       font-family: 'Montserrat';
       src: url('content/fonts/montserrat-v30-latin/montserrat-v30-latin-regular.woff2') format('woff2');
