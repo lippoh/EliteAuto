@@ -1146,22 +1146,35 @@
       }
     }
 
-      /* Fix for inquiry section buttons */
+    /* Desktop version - buttons side by side */
     .cta-buttons.inquiry-inline-ctas {
-      flex-direction: column;
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
       flex-wrap: wrap;
-      gap: 15px;
     }
-    
+
     .cta-buttons.inquiry-inline-ctas .cta-btn {
-      flex: none;
-      width: 100%;
-      max-width: none;
-      padding: 16px 20px;
-      font-size: 0.95rem;
-      white-space: normal;
-      line-height: 1.3;
-      text-align: center;
+      flex: 1;
+      min-width: 200px;
+      white-space: nowrap;
+    }
+
+    /* Mobile version - buttons stacked vertically */
+    @media (max-width: 768px) {
+      .cta-buttons.inquiry-inline-ctas {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .cta-buttons.inquiry-inline-ctas .cta-btn {
+        flex: none;
+        width: 100%;
+        white-space: normal;
+        line-height: 1.3;
+        padding: 16px 20px;
+        font-size: 0.95rem;
+      }
     }
   </style>
 
