@@ -9,11 +9,29 @@
   <link rel="icon" type="image/png" sizes="192x192" href="content/website_favcon/favicon/android-chrome-192x192.png">
   <!-- Apple Touch Icon -->
   <link rel="apple-touch-icon" href="content/website_favcon/favicon/apple-touch-icon.png">
-  <!-- Local Font Awesome CSS -->
-  <link rel="stylesheet" href="content/fonts/fontawesome-free-6.7.2-web/css/all.min.css">
-
-  <!-- Local Montserrat Font Faces -->
+  
   <style>
+    /* Critical CSS - Font Awesome Icons (Inlined for Performance) */
+    .fas{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;display:var(--fa-display,inline-block);font-style:normal;font-variant:normal;line-height:1;text-rendering:auto}
+    
+    @font-face{font-family:"Font Awesome 6 Free";font-style:normal;font-weight:400;font-display:block;src:url('content/fonts/fontawesome-free-6.7.2-web/webfonts/fa-regular-400.woff2') format("woff2"),url('content/fonts/fontawesome-free-6.7.2-web/webfonts/fa-regular-400.ttf') format("truetype")}
+    
+    @font-face{font-family:"Font Awesome 6 Free";font-style:normal;font-weight:900;font-display:block;src:url('content/fonts/fontawesome-free-6.7.2-web/webfonts/fa-solid-900.woff2') format("woff2"),url('content/fonts/fontawesome-free-6.7.2-web/webfonts/fa-solid-900.ttf') format("truetype")}
+    
+    @font-face{font-family:"Font Awesome 6 Brands";font-style:normal;font-weight:400;font-display:block;src:url('content/fonts/fontawesome-free-6.7.2-web/webfonts/fa-brands-400.woff2') format("woff2"),url('content/fonts/fontawesome-free-6.7.2-web/webfonts/fa-brands-400.ttf') format("truetype")}
+    
+    .fas:before{content:var(--fa)}.fas{font-family:"Font Awesome 6 Free";font-weight:900}
+    .fab{font-family:"Font Awesome 6 Brands";font-weight:400}
+    .fa-lightbulb{--fa:"\f0eb"}
+    .fa-file-invoice-dollar{--fa:"\f571"}
+    .fa-phone-alt{--fa:"\f879"}
+    .fa-whatsapp{--fa:"\f232"}
+    
+    :host,:root{--fa-style-family-brands:"Font Awesome 6 Brands";--fa-font-brands:normal 400 1em/1 "Font Awesome 6 Brands"}
+    :host,:root{--fa-font-regular:normal 400 1em/1 "Font Awesome 6 Free"}
+    :host,:root{--fa-style-family-classic:"Font Awesome 6 Free";--fa-font-solid:normal 900 1em/1 "Font Awesome 6 Free"}
+
+    /* Local Montserrat Font Faces */
     @font-face {
       font-family: 'Montserrat';
       src: url('content/fonts/montserrat-v30-latin/montserrat-v30-latin-regular.woff2') format('woff2');
@@ -29,9 +47,8 @@
       font-style: normal;
       font-display: swap;
     }
-  </style>
-  
-  <style>
+
+    /* CSS Variables and Base Styles */
     :root {
       --bg-main: #111216;
       --bg-section: #18191d;
@@ -51,7 +68,7 @@
         #9f8b38 75%,    /* cooler gold */
         #8a7730 100%    /* deep cool gold */
       );
-
+      
       --gold-btn: linear-gradient(
         135deg,
         #d4af37 0%,     /* your current gold */
@@ -59,6 +76,7 @@
         #b8a142 60%,    /* muted gold */
         #9f8b38 100%    /* cooler gold */
       );
+    }
     
     * { 
       box-sizing: border-box; 
@@ -600,28 +618,28 @@
       border-left: 4px solid var(--gold-gradient);
     }
     
- #why-dubai ul.checklist li::before {
-   content: '\27A4';
-   color: var(--gold);
-   background: none;
-   font-size: 1.3rem;
-   margin-right: 15px;
-   font-weight: normal;
- }
+    #why-dubai ul.checklist li::before {
+      content: '\27A4';
+      color: var(--gold);
+      background: none;
+      font-size: 1.3rem;
+      margin-right: 15px;
+      font-weight: normal;
+    }
     
     ul.checklist li:hover {
       transform: translateX(10px);
       background: var(--bg-main);
     }
     
-ul.checklist li::before {
-  content: '✓';
-  color: var(--gold);
-  background: none;
-  margin-right: 15px;
-  font-weight: bold;
-  font-size: 1.2rem;
-}
+    ul.checklist li::before {
+      content: '✓';
+      color: var(--gold);
+      background: none;
+      margin-right: 15px;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
     
     /* Hero Section */
     #hero {
@@ -700,7 +718,7 @@ ul.checklist li::before {
     .form-group select {
       padding: 14px;
       background: var(--charcoal);
-      border: 1px solid rgba(255,255,255,0.1); /* Default: subtle border */
+      border: 1px solid rgba(255,255,255,0.1);
       border-radius: 8px;
       color: var(--white);
       font-family: var(--font-main);
@@ -721,7 +739,6 @@ ul.checklist li::before {
       border-color: var(--gold);
     }
     
-    /* Remove default valid/invalid border colors */
     .form-group input:valid,
     .form-group textarea:valid {
       border-color: rgba(255,255,255,0.1);
@@ -731,13 +748,11 @@ ul.checklist li::before {
       border-color: rgba(255,255,255,0.1);
     }
     
-    /* Show red border only if field is invalid AND has been touched (aria-invalid=true) */
     .form-group input[aria-invalid="true"],
     .form-group textarea[aria-invalid="true"] {
       border-color: #e74c3c;
     }
     
-    /* Show green border only if field is valid AND has been touched (aria-invalid=false and not empty) */
     .form-group input[aria-invalid="false"]:not(:placeholder-shown),
     .form-group textarea[aria-invalid="false"]:not(:placeholder-shown) {
       border-color: #2ecc71;
@@ -794,7 +809,6 @@ ul.checklist li::before {
       }
     }
     
-    /* Required field indicator */
     .form-group label span[aria-label="required"] {
       color: var(--gold-gradient);
       font-weight: bold;
@@ -1014,7 +1028,6 @@ ul.checklist li::before {
         transition: none !important;
       }
       
-      /* WhatsApp button mobile adjustments */
       .whatsapp-float {
         width: 55px;
         height: 55px;
@@ -1071,7 +1084,6 @@ ul.checklist li::before {
         line-height: 1.4;
         opacity: 0.9;
       }
-      
     }
     
     /* Enhanced Mobile Why Dubai Section */
@@ -1099,112 +1111,30 @@ ul.checklist li::before {
         background: var(--charcoal);
         border-left: 3px solid var(--gold-gradient);
       }
+      
       #why-dubai ul.checklist li::before {
         font-size: 1.1rem;
         margin-right: 14px;
         color: var(--gold);
         background: none;
       }
-      }
       
       #why-dubai ul.checklist li:hover {
         transform: translateX(5px);
       }
     }
-    
-    /* Enhanced Mobile Inquiry Section */
-    @media (max-width: 768px) {
-      #inquiry {
-        padding: 50px 6vw;
-      }
-      
-      #inquiry h2 {
-        font-size: 1.8rem;
-        margin-bottom: 1rem;
-        text-align: center;
-      }
-      
-      #inquiry .subheadline-v2 {
-        font-size: 1rem;
-        line-height: 1.5;
-        text-align: center;
-        margin-bottom: 2rem;
-        max-width: 100%;
-      }
-      
-      #inquiry .cta-buttons.inquiry-inline-ctas {
-        flex-direction: column;
-        gap: 12px;
-        margin-bottom: 30px;
-      }
-      
-      #inquiry .cta-buttons.inquiry-inline-ctas .cta-btn {
-        flex: none;
-        width: 100%;
-        max-width: none;
-        padding: 16px 20px;
-        font-size: 0.95rem;
-        text-align: center;
-        white-space: normal;
-        line-height: 1.3;
-      }
-      
-      #inquiry .contact-form {
-        gap: 18px;
-        margin-top: 25px;
-        max-width: 100%;
-      }
-      
-      #inquiry .form-group label {
-        font-size: 0.9rem;
-        margin-bottom: 6px;
-        font-weight: 600;
-      }
-      
-      #inquiry .form-group input,
-      #inquiry .form-group textarea,
-      #inquiry .form-group select {
-        padding: 16px;
-        font-size: 1rem;
-        border-radius: 8px;
-        min-height: 48px;
-        -webkit-appearance: none;
-        appearance: none;
-      }
-      
-      #inquiry .form-group textarea {
-        min-height: 120px;
-        resize: vertical;
-      }
-      
-      #inquiry .contact-form .submit-btn {
-        padding: 18px 24px;
-        font-size: 1.1rem;
-        margin-top: 10px;
-        min-height: 52px;
-      }
-    }
-    
-    /* Extra Small Mobile Devices */
-    @media (max-width: 480px) {
-      #inquiry .cta-buttons.inquiry-inline-ctas .cta-btn {
-        padding: 14px 16px;
-        font-size: 0.9rem;
-      }
-      
-      #inquiry .form-group input,
-      #inquiry .form-group textarea,
-      #inquiry .form-group select {
-        padding: 14px;
-        font-size: 0.95rem;
-      }
-      
-      #inquiry .contact-form .submit-btn {
-        padding: 16px 20px;
-        font-size: 1rem;
-      }
-    }
   </style>
+
+  <script>
+    // Load full Font Awesome CSS asynchronously after page load
+    window.addEventListener('load', function() {
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = 'content/fonts/fontawesome-free-6.7.2-web/css/all.min.css';
+      link.media = 'all';
+      document.head.appendChild(link);
+    });
+  </script>
 </head>
 <body>
   <div id="preloader">
