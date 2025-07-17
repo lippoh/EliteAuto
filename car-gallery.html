@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Car Gallery – Elite Auto</title>
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/x-icon" href="content/website_favcon/favicon/favicon.ico">
+  <link rel="icon" type="image/png" sizes="192x192" href="content/website_favcon/favicon/android-chrome-192x192.png">
+  <link rel="apple-touch-icon" href="content/website_favcon/favicon/apple-touch-icon.png">
+
+  <!-- Critical Font Awesome subset -->
+  <style>
+    /* ===== FONT-FACE & ICON PRELOAD ===== */
+    .fas{display:inline-block;font-style:normal;font-variant:normal;text-rendering:auto;line-height:1;
+         -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+    @font-face{font-family:"Font Awesome 6 Free";font-style:normal;font-weight:400;font-display:swap;
+      src:url('content/fonts/fontawesome-free-6.7.2-web/webfonts/fa-regular-400.woff2') format("woff2")}
+    @font-face{font-family:"Font Awesome 6 Free";font-style:normal;font-weight:900;font-display:swap;
+      src:url('content/fonts/fontawesome-free-6.7.2-web/webfonts/fa-solid-900.woff2') format("woff2")}
+    .fas:before{content:var(--fa)}.fas{font-family:"Font Awesome 6 Free";font-weight:900}
+    .fa-calendar{--fa:"\f073"} .fa-tachometer-alt{--fa:"\f3f4"} .fa-gas-pump{--fa:"\f52f"}
+    .fa-cog{--fa:"\f013"}      .fa-arrow-left{--fa:"\f060"}   .fa-phone{--fa:"\f095"}
+    .fa-envelope{--fa:"\f0e0"}  .fa-chevron-left{--fa:"\f053"} .fa-chevron-right{--fa:"\f054"}
+    .fa-expand{--fa:"\f31e"}    .fa-compress{--fa:"\f066"}    .fa-times{--fa:"\f00d"}
+
+    /* ===== GOOGLE FONT (MONTSERRAT) ===== */
+    @font-face{font-family:'Montserrat';font-weight:400;font-style:normal;font-display:swap;
+      src:url('content/fonts/montserrat-v30-latin/montserrat-v30-latin-regular.woff2') format('woff2')}
+    @font-face{font-family:'Montserrat';font-weight:700;font-style:normal;font-display:swap;
+      src:url('content/fonts/montserrat-v30-latin/montserrat-v30-latin-700.woff2') format('woff2')}
+
+    /* ===== CSS VARIABLES ===== */
+    :root{
+      --bg-main:#111216; --bg-section:#18191d; --charcoal:#23242a;
+      --white:#fff; --gold:#EDEC85;
+      --gold-gradient:linear-gradient(145deg,#e6d45a 0%,#d4af37 25%,#b8a142 50%,#9f8b38 75%,#8a7730 100%);
+      --gold-btn:linear-gradient(135deg,#d4af37 0%,#e6d45a 30%,#b8a142 60%,#9f8b38 100%);
+      --font-main:'Montserrat',Arial,sans-serif;
+    }
+
+    /* ===== RESET & BASE ===== */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--font-main);background:var(--bg-main);color:var(--white);
+         line-height:1.6;overflow-x:hidden}
+
+    /* ===== LAYOUT BLOCKS ===== */
+    header,section{
+      padding:60px 5vw;max-width:1200px;margin:0 auto 40px;background:var(--bg-section);
+      border-radius:24px;box-shadow:0 12px 48px rgba(0,0,0,.25);position:relative;overflow:hidden}
+    h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:700;margin-bottom:.5em}
+    h2{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:700;margin-bottom:.8em;position:relative}
+    h2::after{content:'';position:absolute;left:0;bottom:-8px;width:60px;height:3px;background:var(--white)}
+    h3{font-size:clamp(1.2rem,3vw,1.5rem);font-weight:700;margin-bottom:.6em}
+    .subheadline{font-size:clamp(1rem,2vw,1.2rem);margin-bottom:1.5em;max-width:700px}
+
+    /* ===== BUTTONS ===== */
+    .cta-btn,.action-btn{display:inline-flex;align-items:center;justify-content:center;
+      font-weight:700;text-decoration:none;border:none;cursor:pointer}
+    .cta-btn{
+      background:var(--gold-btn);color:var(--bg-main);padding:18px 40px;border-radius:50px;
+      box-shadow:0 4px 20px rgba(212,175,55,.3);position:relative;overflow:hidden;
+      transition:all .4s cubic-bezier(.25,.8,.25,1)}
+    .cta-btn::before{content:'';position:absolute;inset:0;background:var(--white);transform:scaleX(0);
+      transform-origin:right;z-index:-1;transition:transform .4s cubic-bezier(.25,.8,.25,1)}
+    .cta-btn:hover{color:var(--gold);box-shadow:0 8px 30px rgba(212,175,55,.4)}
+    .cta-btn:hover::before{transform:scaleX(1);transform-origin:left}
+
+    /* ===== HEADER ===== */
+    .main-header{padding:40px 5vw;max-width:1200px;margin:30px auto;background:var(--bg-section);
+      border-radius:24px;box-shadow:0 12px 48px rgba(0,0,0,.25);display:flex;flex-direction:column}
+    .header-top{display:flex;justify-content:center;align-items:center;position:relative;margin-bottom:18px}
+    .logo{height:90px;width:auto;margin:0 auto}
+    .back-btn{display:inline-flex;align-items:center;font-weight:600;color:var(--white);
+      position:absolute;right:28px;top:50%;transform:translateY(-50%);font-size:1.1rem;background:none;border:none;transition:.3s}
+    .back-btn:hover{color:var(--gold)} .back-btn i{margin-right:8px}
+
+    /* ===== GALLERY GRID ===== */
+    .car-gallery{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:40px}
+    .car-card{background:var(--charcoal);border-radius:16px;overflow:hidden;
+      border:1px solid rgba(255,255,255,.05);box-shadow:0 8px 25px rgba(0,0,0,.2);
+      transition:.4s cubic-bezier(.25,.8,.25,1);display:flex;flex-direction:column;
+      min-height:520px;opacity:0;transform:translateY(50px)}
+    .car-card:hover{transform:translateY(-8px);box-shadow:0 15px 40px rgba(212,175,55,.2);border-color:rgba(212,175,55,.3)}
+
+    /* ===== IMAGE SLIDER (INCREASED DEFAULT SIZE) ===== */
+    .car-image{height:320px;position:relative;overflow:hidden;flex-shrink:0;transition:all .3s ease}
+    .car-image img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity .6s ease
+    }
+    .car-image img.active{opacity:1}
+
+    /* ===== SLIDER CONTROLS ===== */
+    .slider-arrow{position:absolute;top:50%;transform:translateY(-50%);border:none;background:rgba(0,0,0,.6);
+      color:var(--white);width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+      cursor:pointer;transition:all .3s ease;font-size:16px;z-index:10}
+    .slider-arrow:hover{background:rgba(0,0,0,.8);transform:translateY(-50%) scale(1.1)}
+    .slider-arrow.left{left:15px}
+    .slider-arrow.right{right:15px}
+
+    .fullscreen-toggle{position:absolute;top:15px;right:15px;border:none;background:rgba(0,0,0,.6);
+      color:var(--white);width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+      cursor:pointer;transition:all .3s ease;font-size:14px;z-index:10}
+    .fullscreen-toggle:hover{background:rgba(0,0,0,.8);transform:scale(1.1)}
+
+    .slider-dots{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:10}
+    .slider-dot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.5);cursor:pointer;transition:all .3s ease}
+    .slider-dot.active{background:var(--gold);transform:scale(1.2)}
+
+    /* ===== FULLSCREEN MODAL ===== */
+    .fullscreen-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.85);
+      display:flex;align-items:center;justify-content:center;z-index:1000;opacity:0;visibility:hidden;
+      transition:all .4s cubic-bezier(.25,.8,.25,1)}
+    .fullscreen-overlay.active{opacity:1;visibility:visible}
+
+    .fullscreen-slider{position:relative;width:90vw;height:80vh;max-width:1200px;max-height:800px;
+      background:var(--charcoal);border-radius:20px;overflow:hidden;transform:scale(.8);
+      transition:transform .4s cubic-bezier(.25,.8,.25,1);box-shadow:0 20px 60px rgba(0,0,0,.5)}
+    .fullscreen-overlay.active .fullscreen-slider{transform:scale(1)}
+
+    .fullscreen-slider img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:contain;
+      opacity:0;transition:opacity .6s ease}
+    .fullscreen-slider img.active{opacity:1}
+
+    .fullscreen-close{position:absolute;top:20px;right:20px;border:none;background:rgba(0,0,0,.7);
+      color:var(--white);width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+      cursor:pointer;transition:all .3s ease;font-size:18px;z-index:20}
+    .fullscreen-close:hover{background:rgba(212,175,55,.8);transform:scale(1.1)}
+
+    .fullscreen-slider .slider-arrow{width:50px;height:50px;font-size:20px;background:rgba(0,0,0,.7)}
+    .fullscreen-slider .slider-arrow.left{left:20px}
+    .fullscreen-slider .slider-arrow.right{right:20px}
+
+    .fullscreen-slider .slider-dots{bottom:20px;gap:12px}
+    .fullscreen-slider .slider-dot{width:14px;height:14px}
+
+    /* ===== INFO BLOCK ===== */
+    .car-info{flex:1;padding:22px;display:flex;flex-direction:column}
+    .car-price{font-size:1.8rem;font-weight:700;color:var(--gold);margin:0 0 18px}
+    .car-specs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;flex-grow:1}
+    .spec-item{display:flex;align-items:center;font-size:.9rem;color:rgba(255,255,255,.8)}
+    .spec-item i{margin-right:8px;color:var(--gold);width:16px;flex-shrink:0}
+    .car-actions{display:flex;gap:10px;margin-top:auto}
+    .action-btn{padding:12px 16px;border-radius:8px;font-size:.9rem;transition:.3s;flex:1}
+    .primary-btn{background:var(--gold-btn);color:var(--bg-main)}
+    .primary-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(212,175,55,.4)}
+    .secondary-btn{background:transparent;color:var(--white);border:2px solid rgba(255,255,255,.2)}
+    .secondary-btn:hover{border-color:var(--gold);color:var(--gold)}
+
+    /* ===== PRELOADER ===== */
+    #preloader{position:fixed;inset:0;background:var(--bg-main);display:flex;align-items:center;justify-content:center;
+      z-index:9999;transition:opacity .5s ease}
+    .loader{width:60px;height:60px;border:4px solid rgba(212,175,55,.2);border-top:4px solid var(--gold);
+      border-radius:50%;animation:spin 1s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    /* ===== FOOTER ===== */
+    footer{background:var(--bg-section);padding:50px 5vw 35px;max-width:1200px;margin:40px auto;
+      border-radius:24px;box-shadow:0 12px 48px rgba(0,0,0,.25)}
+    .footer-content{display:grid;gap:35px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));margin-bottom:35px}
+    .footer-section h3{margin-bottom:18px;color:var(--gold)}
+    .footer-section p,.footer-section a,.footer-service{display:block;margin-bottom:8px;text-decoration:none;color:rgba(255,255,255,.8)}
+    .footer-section a:hover{color:var(--gold)}
+    .footer-service{opacity:0;transform:translateY(20px);transition:opacity .8s,transform .8s;}
+    .footer-service.visible{opacity:1;transform:translateY(0);}
+
+    /* ===== RESPONSIVE ===== */
+    @media(max-width:1024px){
+      .car-gallery{grid-template-columns:1fr 1fr}
+      .car-image{height:280px}
+    }
+    @media(max-width:768px){
+      .main-header{padding:28px 6vw} header,section{padding:40px 6vw}
+      .car-gallery{grid-template-columns:1fr;gap:25px}
+      .logo{height:55px} .car-image{height:250px}
+      .back-btn{right:16px}.car-actions{flex-direction:column;gap:8px}
+      footer{padding:35px 6vw}
+      .fullscreen-slider{width:95vw;height:70vh}
+    }
+    @media(max-width:480px){
+      .logo{height:45px}.car-gallery{gap:20px}.car-specs{grid-template-columns:1fr;gap:8px}
+      .car-name{font-size:1.2rem}.car-price{font-size:1.6rem}
+      .car-image{height:220px}
+      .fullscreen-slider{width:98vw;height:60vh}
+    }
+  </style>
+
+  <!-- Load complete Font Awesome after page is ready -->
+  <script>
+    window.addEventListener('load',()=>{
+      const fa=document.createElement('link');
+      fa.rel='stylesheet';
+      fa.href='content/fonts/fontawesome-free-6.7.2-web/css/all.min.css';
+      document.head.appendChild(fa);
+    });
+  </script>
+</head>
+
+<body>
+  <!-- ===== PRELOADER ===== -->
+  <div id="preloader"><div class="loader"></div></div>
+
+  <!-- ===== HEADER ===== -->
+  <header class="main-header">
+    <div class="header-top gold-box">
+      <img src="content/website_logo/logo.webp" alt="Elite Auto Logo" class="logo">
+      <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i>Back to Home</a>
+    </div>
+    <h1>Available Models</h1>
+    <p class="subheadline">
+      Explore our curated selection of luxury vehicles available for import from Dubai.
+      Each model represents exceptional value and premium quality.
+    </p>
+  </header>
+
+  <!-- ===== GALLERY ===== -->
+  <section id="gallery">
+    <h2>Car Gallery</h2>
+    <div class="car-gallery">
+
+      <!-- === CARD 1 : MERCEDES-BENZ G63 AMG === -->
+      <div class="car-card">
+        <div class="car-image car-image-slider">
+          <!-- Car Images -->
+          <img src="content/car_gallery/MERCEDES BENZ G63/selected/img1.jpg" class="active" alt="Mercedes-Benz G63 AMG – Front" loading="eager">
+          <img src="content/car_gallery/MERCEDES BENZ G63/selected/img2.jpg" alt="Mercedes-Benz G63 AMG – Side" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ G63/selected/img3.jpg" alt="Mercedes-Benz G63 AMG – Rear" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ G63/selected/img4.jpg" alt="Mercedes-Benz G63 AMG – Interior" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ G63/selected/img5.jpg" alt="Mercedes-Benz G63 AMG – Dashboard" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ G63/selected/img6.jpg" alt="Mercedes-Benz G63 AMG – Engine" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ G63/selected/img7.jpg" alt="Mercedes-Benz G63 AMG – Wheels" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ G63/selected/img8.jpg" alt="Mercedes-Benz G63 AMG – Detail" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ G63/selected/img9.jpg" alt="Mercedes-Benz G63 AMG – Profile" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ G63/selected/img10.jpg" alt="Mercedes-Benz G63 AMG – Angle" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ G63/selected/img11.jpg" alt="Mercedes-Benz G63 AMG – Back" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ G63/selected/img12.jpg" alt="Mercedes-Benz G63 AMG – Side2" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ G63/selected/img13.jpg" alt="Mercedes-Benz G63 AMG – Front2" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ G63/selected/img14.jpg" alt="Mercedes-Benz G63 AMG – Interior2" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ G63/selected/img15.jpg" alt="Mercedes-Benz G63 AMG – Detail2" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ G63/selected/img16.jpg" alt="Mercedes-Benz G63 AMG – Lights" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ G63/selected/img17.jpg" alt="Mercedes-Benz G63 AMG – Grille" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ G63/selected/img18.jpg" alt="Mercedes-Benz G63 AMG – Badge" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ G63/selected/img19.jpg" alt="Mercedes-Benz G63 AMG – Exhaust" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ G63/selected/img20.jpg" alt="Mercedes-Benz G63 AMG – Final" loading="lazy">
+
+          <!-- Navigation Controls -->
+          <button class="slider-arrow left" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+          <button class="slider-arrow right" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+          <button class="fullscreen-toggle" aria-label="Fullscreen"><i class="fas fa-expand"></i></button>
+          <div class="slider-dots"></div>
+        </div>
+
+        <div class="car-info">
+          <h3 class="car-name">Mercedes-Benz G63 AMG (BRABUS rims & kit)</h3>
+          <div class="car-price">€136,200</div>
+
+          <div class="car-specs">
+            <div class="spec-item"><i class="fas fa-calendar"></i><span>2021</span></div>
+            <div class="spec-item"><i class="fas fa-tachometer-alt"></i><span>17,615 km</span></div>
+            <div class="spec-item"><i class="fas fa-gas-pump"></i><span>Petrol</span></div>
+            <div class="spec-item"><i class="fas fa-cog"></i><span>Automatic</span></div>
+          </div>
+
+          <div class="car-actions">
+            <a href="index.html#inquiry" class="action-btn primary-btn">Request Quote</a>
+            <a href="#" class="action-btn secondary-btn">View Details</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="car-card">
+        <div class="car-image car-image-slider">
+          <!-- Car Images -->
+          <img src="content/car_gallery/MERCEDES BENZ GLC300L/img1.jpg" class="active" alt="Front" loading="eager">
+          <img src="content/car_gallery/MERCEDES BENZ GLC300L/img2.jpg" alt="Side" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ GLC300L/img3.jpg" alt="Rear" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ GLC300L/img4.jpg" alt="Interior" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ GLC300L/img5.jpg" alt="Dashboard" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ GLC300L/img6.jpg" alt="Engine" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ GLC300L/img7.jpg" alt="Wheels" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ GLC300L/img8.jpg" alt="Detail" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ GLC300L/img9.jpg" alt="Profile" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ GLC300L/img10.jpg" alt="Angle" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ GLC300L/img11.jpg" alt="Back" loading="lazy">
+
+          <!-- Navigation Controls -->
+          <button class="slider-arrow left" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+          <button class="slider-arrow right" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+          <button class="fullscreen-toggle" aria-label="Fullscreen"><i class="fas fa-expand"></i></button>
+          <div class="slider-dots"></div>
+        </div>
+
+        <div class="car-info">
+          <h3 class="car-name">Mercedes-Benz GLC 300L</h3>
+          <div class="car-price">€41,100</div>
+
+          <div class="car-specs">
+            <div class="spec-item"><i class="fas fa-calendar"></i><span>2023</span></div>
+            <div class="spec-item"><i class="fas fa-tachometer-alt"></i><span>32,000 km</span></div>
+            <div class="spec-item"><i class="fas fa-gas-pump"></i><span>Petrol</span></div>
+            <div class="spec-item"><i class="fas fa-cog"></i><span>Automatic</span></div>
+          </div>
+
+          <div class="car-actions">
+            <a href="index.html#inquiry" class="action-btn primary-btn">Request Quote</a>
+            <a href="#" class="action-btn secondary-btn">View Details</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="car-card">
+        <div class="car-image car-image-slider">
+          <!-- Car Images -->
+          <img src="content/car_gallery/AUDI S6/img1.jpg" class="active" alt="Front" loading="eager">
+          <img src="content/car_gallery/AUDI S6/img2.jpg" alt="Side" loading="lazy">
+          <img src="content/car_gallery/AUDI S6/img3.jpg" alt="Rear" loading="lazy">
+          <img src="content/car_gallery/AUDI S6/img4.jpg" alt="Interior" loading="lazy">
+          <img src="content/car_gallery/AUDI S6/img5.jpg" alt="Dashboard" loading="lazy">
+
+          <!-- Navigation Controls -->
+          <button class="slider-arrow left" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+          <button class="slider-arrow right" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+          <button class="fullscreen-toggle" aria-label="Fullscreen"><i class="fas fa-expand"></i></button>
+          <div class="slider-dots"></div>
+        </div>
+
+        <div class="car-info">
+          <h3 class="car-name">Audi S6</h3>
+          <div class="car-price">€15,270</div>
+
+          <div class="car-specs">
+            <div class="spec-item"><i class="fas fa-calendar"></i><span>2016</span></div>
+            <div class="spec-item"><i class="fas fa-tachometer-alt"></i><span>170,000 km</span></div>
+            <div class="spec-item"><i class="fas fa-gas-pump"></i><span>Petrol</span></div>
+            <div class="spec-item"><i class="fas fa-cog"></i><span>Automatic</span></div>
+          </div>
+
+          <div class="car-actions">
+            <a href="index.html#inquiry" class="action-btn primary-btn">Request Quote</a>
+            <a href="#" class="action-btn secondary-btn">View Details</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="car-card">
+        <div class="car-image car-image-slider">
+          <!-- Car Images -->
+          <img src="content/car_gallery/MERCEDES BENZ E300L/img1.jpg" class="active" alt="Front" loading="eager">
+          <img src="content/car_gallery/MERCEDES BENZ E300L/img2.jpg" alt="Side" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ E300L/img3.jpg" alt="Rear" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ E300L/img4.jpg" alt="Interior" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ E300L/img5.jpg" alt="Dashboard" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ E300L/img6.jpg" alt="Engine" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ E300L/img7.jpg" alt="Wheels" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ E300L/img8.jpg" alt="Detail" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ E300L/img9.jpg" alt="Profile" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ E300L/img10.jpg" alt="Angle" loading="lazy">
+
+          <!-- Navigation Controls -->
+          <button class="slider-arrow left" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+          <button class="slider-arrow right" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+          <button class="fullscreen-toggle" aria-label="Fullscreen"><i class="fas fa-expand"></i></button>
+          <div class="slider-dots"></div>
+        </div>
+
+        <div class="car-info">
+          <h3 class="car-name">Mercedes-Benz E 300L</h3>
+          <div class="car-price">€32,900</div>
+
+          <div class="car-specs">
+            <div class="spec-item"><i class="fas fa-calendar"></i><span>2022</span></div>
+            <div class="spec-item"><i class="fas fa-tachometer-alt"></i><span>32,000 km</span></div>
+            <div class="spec-item"><i class="fas fa-gas-pump"></i><span>Petrol</span></div>
+            <div class="spec-item"><i class="fas fa-cog"></i><span>Automatic</span></div>
+          </div>
+
+          <div class="car-actions">
+            <a href="index.html#inquiry" class="action-btn primary-btn">Request Quote</a>
+            <a href="#" class="action-btn secondary-btn">View Details</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="car-card">
+        <div class="car-image car-image-slider">
+          <!-- Car Images -->
+          <img src="content/car_gallery/MERCEDES BENZ GLE400/img1.jpg" class="active" alt="Front" loading="eager">
+          <img src="content/car_gallery/MERCEDES BENZ GLE400/img2.jpg" alt="Side" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ GLE400/img3.jpg" alt="Rear" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ GLE400/img4.jpg" alt="Interior" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ GLE400/img5.jpg" alt="Dashboard" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ GLE400/img6.jpg" alt="Engine" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ GLE400/img7.jpg" alt="Wheels" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ GLE400/img8.jpg" alt="Detail" loading="lazy">
+          <img src="content/car_gallery/MERCEDES BENZ GLE400/img9.jpg" alt="Profile" loading="lazy">
+
+          <!-- Navigation Controls -->
+          <button class="slider-arrow left" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+          <button class="slider-arrow right" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+          <button class="fullscreen-toggle" aria-label="Fullscreen"><i class="fas fa-expand"></i></button>
+          <div class="slider-dots"></div>
+        </div>
+
+        <div class="car-info">
+          <h3 class="car-name">Mercedes-Benz GLE400</h3>
+          <div class="car-price">Ask for an estimate</div>
+
+          <div class="car-specs">
+            <div class="spec-item"><i class="fas fa-calendar"></i><span>2017</span></div>
+            <div class="spec-item"><i class="fas fa-tachometer-alt"></i><span>172,000 km</span></div>
+            <div class="spec-item"><i class="fas fa-gas-pump"></i><span>Petrol</span></div>
+            <div class="spec-item"><i class="fas fa-cog"></i><span>Automatic</span></div>
+          </div>
+
+          <div class="car-actions">
+            <a href="index.html#inquiry" class="action-btn primary-btn">Request Quote</a>
+            <a href="#" class="action-btn secondary-btn">View Details</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== FULLSCREEN MODAL ===== -->
+  <div class="fullscreen-overlay" id="fullscreen-modal">
+    <div class="fullscreen-slider" id="fullscreen-slider">
+      <!-- Images will be cloned here by JavaScript -->
+      <button class="fullscreen-close" aria-label="Close"><i class="fas fa-times"></i></button>
+      <button class="slider-arrow left" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+      <button class="slider-arrow right" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+      <div class="slider-dots"></div>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Contact Us</h3>
+        <p><i class="fas fa-phone"></i> +30 698 805 1698 (Greece)</p>
+        <p><i class="fas fa-phone"></i> +359 882 409 266 (Bulgaria)</p>
+        <p><i class="fas fa-envelope"></i> info@eliteauto.com</p>
+      </div>
+
+      <div class="footer-section">
+        <h3>Services</h3>
+        <div class="footer-service">Car Import</div>
+        <div class="footer-service">Vehicle Inspection</div>
+        <div class="footer-service">Shipping & Logistics</div>
+        <div class="footer-service">Documentation</div>
+      </div>
+
+      <div class="footer-section">
+        <h3>About</h3>
+        <a href="index.html#who">Our Story</a>
+        <a href="index.html#why-dubai">Why Dubai</a>
+        <a href="index.html#how">How It Works</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2024 Elite Auto. All rights reserved.</div>
+  </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+  <script>
+    /* ---------- GSAP ANIMATIONS ---------- */
+    gsap.registerPlugin(ScrollTrigger);
+    window.addEventListener('load',()=>{
+      gsap.to('#preloader',{opacity:0,duration:.5,onComplete:()=>{document.getElementById('preloader').style.display='none';initAnim();}});
+      // Animate footer services
+      document.querySelectorAll('.footer-service').forEach((el,i)=>{
+        setTimeout(()=>el.classList.add('visible'),400+200*i);
+      });
+    });
+
+    function initAnim(){
+      gsap.killTweensOf('.car-card');
+      gsap.set('.car-card',{opacity:1,y:0});
+      gsap.from('.car-card',{scrollTrigger:{trigger:'.car-gallery',start:'top 70%'},
+        y:50,opacity:0,duration:.8,stagger:.2});
+    }
+
+    document.querySelectorAll('.car-card').forEach(card=>{
+      card.addEventListener('mouseenter',()=>gsap.to(card,{scale:1.02,duration:.3,ease:'power2.out'}));
+      card.addEventListener('mouseleave',()=>gsap.to(card,{scale:1,duration:.3,ease:'power2.out'}));
+    });
+
+    /* ---------- UNIVERSAL SLIDER LOGIC FOR ALL CAR CARDS ---------- */
+    (function(){
+      const modal = document.getElementById('fullscreen-modal');
+      const fsSlider = document.getElementById('fullscreen-slider');
+      let isFullscreen = false;
+      let current = 0;
+      let slides = [];
+      let dots = [];
+
+      // Helper to show slide in a container
+      function showSlide(i, container, slidesArr, dotsArr) {
+        slidesArr[current].classList.remove('active');
+        dotsArr[current].classList.remove('active');
+        current = (i + slidesArr.length) % slidesArr.length;
+        slidesArr[current].classList.add('active');
+        dotsArr[current].classList.add('active');
+      }
+
+      // For each car slider
+      document.querySelectorAll('.car-image-slider').forEach((slider) => {
+        const sliderSlides = slider.querySelectorAll('img');
+        const dotsBox = slider.querySelector('.slider-dots');
+        const prevBtn = slider.querySelector('.slider-arrow.left');
+        const nextBtn = slider.querySelector('.slider-arrow.right');
+        const fsBtn = slider.querySelector('.fullscreen-toggle');
+
+        // Clear dotsBox in case of rerender
+        dotsBox.innerHTML = '';
+        sliderSlides.forEach((_,i)=>{
+          const dot = document.createElement('span');
+          dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+          dot.dataset.index = i;
+          dotsBox.appendChild(dot);
+        });
+        const sliderDots = [...dotsBox.children];
+
+        // Initial state
+        sliderSlides[0].classList.add('active');
+        sliderDots[0].classList.add('active');
+        let localCurrent = 0;
+
+        // Local showSlide for this slider
+        function localShowSlide(i) {
+          sliderSlides[localCurrent].classList.remove('active');
+          sliderDots[localCurrent].classList.remove('active');
+          localCurrent = (i + sliderSlides.length) % sliderSlides.length;
+          sliderSlides[localCurrent].classList.add('active');
+          sliderDots[localCurrent].classList.add('active');
+        }
+
+        prevBtn.addEventListener('click', () => localShowSlide(localCurrent - 1));
+        nextBtn.addEventListener('click', () => localShowSlide(localCurrent + 1));
+        dotsBox.addEventListener('click', e => {
+          if(e.target.classList.contains('slider-dot')) {
+            localShowSlide(+e.target.dataset.index);
+          }
+        });
+
+        // Fullscreen logic for this slider
+        fsBtn.addEventListener('click', function() {
+          // Save global state for fullscreen
+          current = localCurrent;
+          slides = Array.from(sliderSlides).map(img => img.cloneNode(true));
+          // Build fullscreen slider
+          fsSlider.innerHTML = '';
+          slides.forEach((img, i) => {
+            img.classList.remove('active');
+            if(i === current) img.classList.add('active');
+            fsSlider.appendChild(img);
+          });
+          fsSlider.insertAdjacentHTML('beforeend', `
+            <button class="fullscreen-close" aria-label="Close"><i class="fas fa-times"></i></button>
+            <button class="slider-arrow left" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+            <button class="slider-arrow right" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+            <div class="slider-dots"></div>
+          `);
+          // Build dots
+          const fsDotsBox = fsSlider.querySelector('.slider-dots');
+          fsDotsBox.innerHTML = '';
+          slides.forEach((_, i) => {
+            const dot = document.createElement('span');
+            dot.className = 'slider-dot' + (i === current ? ' active' : '');
+            dot.dataset.index = i;
+            fsDotsBox.appendChild(dot);
+          });
+          dots = [...fsDotsBox.children];
+
+          // Add event listeners
+          fsSlider.querySelector('.fullscreen-close').addEventListener('click', closeFullscreen);
+          fsSlider.querySelector('.slider-arrow.left').addEventListener('click', () => showSlide(current - 1, fsSlider, slides, dots));
+          fsSlider.querySelector('.slider-arrow.right').addEventListener('click', () => showSlide(current + 1, fsSlider, slides, dots));
+          fsDotsBox.addEventListener('click', e => {
+            if(e.target.classList.contains('slider-dot')) {
+              showSlide(+e.target.dataset.index, fsSlider, slides, dots);
+            }
+          });
+
+          // Show modal
+          modal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+          isFullscreen = true;
+        });
+      });
+
+      function closeFullscreen() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+        isFullscreen = false;
+      }
+
+      document.addEventListener('keydown', e => {
+        if(isFullscreen) {
+          if(e.key === 'Escape') closeFullscreen();
+          if(e.key === 'ArrowLeft') showSlide(current - 1, fsSlider, slides, dots);
+          if(e.key === 'ArrowRight') showSlide(current + 1, fsSlider, slides, dots);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

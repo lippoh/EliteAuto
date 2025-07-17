@@ -1215,7 +1215,7 @@
       <div style="margin-top: 80px;"></div>
       <div class="cta-button-group" style="opacity: 0; transform: translateY(30px); transition: opacity 0.8s, transform 0.8s;">
         <a href="#inquiry" class="cta-btn" style="padding: 12px 24px; font-size: 1rem;"><i class="fas fa-file-invoice-dollar" style="margin-right: 10px;"></i>Start Inquiry</a>
-        <a href="#how" class="cta-btn" id="howItWorksBtn" style="padding: 12px 24px; font-size: 1rem;"><i class="fas fa-lightbulb" style="margin-right: 10px;"></i>How it works</a>
+        <a href="car-gallery.html" class="cta-btn" id="galleryBtn" style="padding: 12px 24px; font-size: 1rem;"><i class="fas fa-car" style="margin-right: 10px;"></i>View Gallery</a>
       </div>
     </header>
 
@@ -1781,4 +1781,16 @@
   });
   </script>
 </body>
+<script>
+  window.addEventListener('DOMContentLoaded', function() {
+    if (window.location.hash === '#inquiry') {
+      var inquiry = document.getElementById('inquiry');
+      if (inquiry) {
+        setTimeout(function() {
+          inquiry.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 200);
+      }
+    }
+  });
+</script>
 </html>
