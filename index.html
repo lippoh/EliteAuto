@@ -1793,4 +1793,17 @@
     }
   });
 </script>
+  <script>
+    // Ensure smooth scroll to #inquiry after navigation from car-gallery.html
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.location.hash === '#inquiry') {
+        setTimeout(function() {
+          var inquiry = document.getElementById('inquiry');
+          if (inquiry) {
+            inquiry.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 100); // Adjust delay if needed for your content
+      }
+    });
+  </script>
 </html>
