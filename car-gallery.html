@@ -71,10 +71,10 @@
     /* ===== HEADER ===== */
     .main-header{padding:40px 5vw;max-width:1200px;margin:30px auto;background:var(--bg-section);
       border-radius:24px;box-shadow:0 12px 48px rgba(0,0,0,.25);display:flex;flex-direction:column}
-    .header-top{display:flex;justify-content:center;align-items:center;position:relative;margin-bottom:18px}
-    .logo{height:90px;width:auto;margin:0 auto}
+    .header-top{display:flex;justify-content:space-between;align-items:center;position:relative;margin-bottom:18px}
+    .logo{height:90px;width:auto;margin:0;}
     .back-btn{display:inline-flex;align-items:center;font-weight:600;color:var(--white);
-      position:absolute;right:28px;top:50%;transform:translateY(-50%);font-size:1.1rem;background:none;border:none;transition:.3s}
+      font-size:1.1rem;background:none;border:none;transition:.3s;margin-left:auto;padding-left:32px;}
     .back-btn:hover{color:var(--gold)} .back-btn i{margin-right:8px}
 
     /* ===== GALLERY GRID ===== */
@@ -172,6 +172,8 @@
     .footer-section a:hover{color:var(--gold)}
     .footer-service{opacity:0;transform:translateY(20px);transition:opacity .8s,transform .8s;}
     .footer-service.visible{opacity:1;transform:translateY(0);}
+
+    .footer-bottom{text-align:center;}
 
     /* ===== RESPONSIVE ===== */
     @media(max-width:1024px){
@@ -473,6 +475,74 @@
   <!-- ===== SCRIPTS ===== -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+  <script>
+    // Smooth scroll to #inquiry if already on index.html
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('a.action-btn.primary-btn[href="index.html#inquiry"]').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          // If already on index.html, perform smooth scroll
+          if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname === '/index.html') {
+            e.preventDefault();
+            const inquiry = document.getElementById('inquiry');
+            if (inquiry) {
+              inquiry.scrollIntoView({ behavior: 'smooth' });
+            }
+          }
+        });
+      });
+
+      // Smooth scroll to #who if already on index.html (for 'Our Story' link in footer)
+      var ourStoryLink = document.querySelector('a[href="index.html#who"]');
+      if (ourStoryLink) {
+        ourStoryLink.addEventListener('click', function(e) {
+          if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname === '/index.html') {
+            e.preventDefault();
+            var whoSection = document.getElementById('who');
+            if (whoSection) {
+              whoSection.scrollIntoView({ behavior: 'smooth' });
+            }
+          } else {
+            e.preventDefault();
+            window.location.href = 'index.html#who';
+          }
+        });
+      }
+
+      // Smooth scroll to #why-dubai if already on index.html (for 'Why Dubai' link in footer)
+      var whyDubaiLink = document.querySelector('a[href="index.html#why-dubai"]');
+      if (whyDubaiLink) {
+        whyDubaiLink.addEventListener('click', function(e) {
+          if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname === '/index.html') {
+            e.preventDefault();
+            var whyDubaiSection = document.getElementById('why-dubai');
+            if (whyDubaiSection) {
+              whyDubaiSection.scrollIntoView({ behavior: 'smooth' });
+            }
+          } else {
+            e.preventDefault();
+            window.location.href = 'index.html#why-dubai';
+          }
+        });
+      }
+
+      // Smooth scroll to #how if already on index.html (for 'How It Works' link in footer)
+      var howLink = document.querySelector('a[href="index.html#how"]');
+      if (howLink) {
+        howLink.addEventListener('click', function(e) {
+          if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname === '/index.html') {
+            e.preventDefault();
+            var howSection = document.getElementById('how');
+            if (howSection) {
+              howSection.scrollIntoView({ behavior: 'smooth' });
+            }
+          } else {
+            e.preventDefault();
+            window.location.href = 'index.html#how';
+          }
+        });
+      }
+    });
+  </script>
   <script>
     /* ---------- GSAP ANIMATIONS ---------- */
     gsap.registerPlugin(ScrollTrigger);
