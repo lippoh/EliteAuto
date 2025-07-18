@@ -494,6 +494,12 @@
             // Add a timestamp to ensure freshness
             sessionStorage.setItem('navigationTimestamp', Date.now().toString());
             
+            // Mobile-specific: Add additional delay for slower devices
+            const isMobile = window.innerWidth <= 768;
+            if (isMobile) {
+              sessionStorage.setItem('isMobileNavigation', 'true');
+            }
+            
             // Navigate to index.html with hash
             window.location.href = `index.html#${targetSection}`;
           });
