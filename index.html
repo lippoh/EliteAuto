@@ -1463,13 +1463,36 @@
         }
       }, ctaDelay);
       
-      // Hide preloader
+      // Hide preloader with mobile navigation fix
       gsap.to("#preloader", {
         opacity: 0,
         duration: 0.5,
         onComplete: function() {
           document.getElementById("preloader").style.display = "none";
-          initAnimations();
+          
+          // ===== MOBILE NAVIGATION FIX =====
+          const target = sessionStorage.getItem('navigateToSection') || window.location.hash.slice(1);
+          const isMobileNav = sessionStorage.getItem('isMobileNavigation') === 'true';
+          
+          if (target) {
+            const el = document.getElementById(target);
+            if (el) {
+              // Use longer delay for mobile devices to ensure complete page load
+              const scrollDelay = isMobileNav ? 200 : 50;
+              setTimeout(() => {
+                el.scrollIntoView({behavior:'smooth',block:'start'});
+                console.log(`Navigated to section: ${target}${isMobileNav ? ' (mobile)' : ''}`);
+              }, scrollDelay);
+            }
+            // Clean up sessionStorage
+            sessionStorage.removeItem('navigateToSection');
+            sessionStorage.removeItem('navigationDescription');
+            sessionStorage.removeItem('navigationTimestamp');
+            sessionStorage.removeItem('isMobileNavigation');
+          }
+          // ===== END MOBILE NAVIGATION FIX =====
+          
+          initAnimations(); // your existing call
         }
       });
     });
