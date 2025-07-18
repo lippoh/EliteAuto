@@ -379,7 +379,7 @@
           <div class="car-price">€32,900</div>
 
           <div class="car-specs">
-            <div class="spec-item"><i class="fas fa-calendar"></i><span>2022</span></div>
+            <div class="spec-item"><i class="fas fa-calendar"></i><span>2021</span></div>
             <div class="spec-item"><i class="fas fa-tachometer-alt"></i><span>32,000 km</span></div>
             <div class="spec-item"><i class="fas fa-gas-pump"></i><span>Petrol</span></div>
             <div class="spec-item"><i class="fas fa-cog"></i><span>Automatic</span></div>
@@ -476,61 +476,81 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
   <script>
-    // Enhanced navigation handling to ensure proper anchor scrolling
+    // ===== COMPREHENSIVE NAVIGATION SYSTEM =====
     document.addEventListener('DOMContentLoaded', function() {
       
-      // Function to handle "Request Quote" button clicks with improved navigation
-      function handleRequestQuoteClick(btn) {
-        btn.addEventListener('click', function(e) {
-          e.preventDefault(); // Always prevent default to control navigation
-          
-          // Store the intent to scroll to inquiry in sessionStorage
-          sessionStorage.setItem('scrollToInquiry', 'true');
-          
-          // Navigate to index.html
-          window.location.href = 'index.html#inquiry';
-        });
-      }
-      
-      // Apply enhanced navigation to all "Request Quote" buttons
-      document.querySelectorAll('a.action-btn.primary-btn[href="index.html#inquiry"]').forEach(handleRequestQuoteClick);
-      
-      // Handle footer navigation links with the same approach
-      function handleFooterNavigation() {
-        const footerLinks = [
-          { selector: 'a[href="index.html#who"]', target: 'who' },
-          { selector: 'a[href="index.html#why-dubai"]', target: 'why-dubai' },
-          { selector: 'a[href="index.html#how"]', target: 'how' }
-        ];
+      // Function to handle all cross-page navigation with session storage
+      function handleCrossPageNavigation(selector, targetSection, description) {
+        const elements = document.querySelectorAll(selector);
         
-        footerLinks.forEach(link => {
-          const element = document.querySelector(link.selector);
-          if (element) {
-            element.addEventListener('click', function(e) {
-              e.preventDefault();
-              sessionStorage.setItem('scrollToSection', link.target);
-              window.location.href = `index.html#${link.target}`;
-            });
-          }
+        elements.forEach(element => {
+          element.addEventListener('click', function(e) {
+            e.preventDefault(); // Always prevent default navigation
+            
+            // Store navigation intent in sessionStorage
+            sessionStorage.setItem('navigateToSection', targetSection);
+            sessionStorage.setItem('navigationDescription', description);
+            
+            // Add a timestamp to ensure freshness
+            sessionStorage.setItem('navigationTimestamp', Date.now().toString());
+            
+            // Navigate to index.html with hash
+            window.location.href = `index.html#${targetSection}`;
+          });
         });
+        
+        console.log(`Enhanced navigation setup for ${description}: ${elements.length} elements found`);
       }
       
-      handleFooterNavigation();
+      // Setup navigation for "Request Quote" buttons
+      handleCrossPageNavigation(
+        'a.action-btn.primary-btn[href="index.html#inquiry"]',
+        'inquiry',
+        'Request Quote buttons'
+      );
+      
+      // Setup navigation for footer "About" links
+      handleCrossPageNavigation(
+        'a[href="index.html#who"]',
+        'who',
+        'Our Story links'
+      );
+      
+      handleCrossPageNavigation(
+        'a[href="index.html#why-dubai"]',
+        'why-dubai',
+        'Why Dubai links'
+      );
+      
+      handleCrossPageNavigation(
+        'a[href="index.html#how"]',
+        'how',
+        'How It Works links'
+      );
       
       // Enhanced fallback for direct hash navigation
       if (window.location.hash) {
         const targetId = window.location.hash.substring(1);
         const targetElement = document.getElementById(targetId);
+        
         if (targetElement) {
-          // Small delay to ensure page is fully loaded
+          // Delay to ensure page is fully loaded
           setTimeout(() => {
             targetElement.scrollIntoView({ 
               behavior: 'smooth', 
               block: 'start' 
             });
-          }, 100);
+            console.log(`Direct hash navigation to: ${targetId}`);
+          }, 150);
         }
       }
+      
+      // Debug: Log current page navigation setup
+      console.log('Car Gallery Navigation System initialized');
+      console.log('- Request Quote buttons:', document.querySelectorAll('a.action-btn.primary-btn[href="index.html#inquiry"]').length);
+      console.log('- Footer Our Story links:', document.querySelectorAll('a[href="index.html#who"]').length);
+      console.log('- Footer Why Dubai links:', document.querySelectorAll('a[href="index.html#why-dubai"]').length);
+      console.log('- Footer How It Works links:', document.querySelectorAll('a[href="index.html#how"]').length);
     });
   </script>
   <script>
