@@ -116,6 +116,66 @@
     .slider-dot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.5);cursor:pointer;transition:all .3s ease}
     .slider-dot.active{background:var(--gold);transform:scale(1.2)}
 
+    /* ===== POPUP MODALS ===== */
+    .details-popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .details-popup.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .popup-content {
+      background: var(--bg-section);
+      border-radius: 16px;
+      padding: 30px;
+      max-width: 800px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+    }
+    
+    .details-popup.active .popup-content {
+      transform: translateY(0);
+    }
+    
+    .popup-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      border: none;
+      background: none;
+      color: var(--white);
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+    
+    .popup-close:hover {
+      color: var(--gold);
+    }
+    
+    .popup-body {
+      padding: 20px 0;
+    }
+
     /* ===== FULLSCREEN MODAL ===== */
     .fullscreen-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.85);
       display:flex;align-items:center;justify-content:center;z-index:1000;opacity:0;visibility:hidden;
@@ -268,13 +328,28 @@
           <div class="car-specs">
             <div class="spec-item"><i class="fas fa-calendar"></i><span>2021</span></div>
             <div class="spec-item"><i class="fas fa-tachometer-alt"></i><span>17,615 km</span></div>
-            <div class="spec-item"><i class="fas fa-gas-pump"></i><span>Petrol</span></div>
+            <div class="spec-item"><i class="fas fa-gas-pump"></i><span>Gasoline</span></div>
             <div class="spec-item"><i class="fas fa-cog"></i><span>Automatic</span></div>
           </div>
 
           <div class="car-actions">
             <a href="index.html#inquiry" class="action-btn primary-btn">Request Quote</a>
-            <a href="#" class="action-btn secondary-btn">View Details</a>
+            <button class="action-btn secondary-btn view-details-btn">View Details</button>
+          </div>
+          <div class="car-details" style="display:none;">
+            <h4>Detailed Specifications</h4>
+            <ul>
+              <li><strong>Make:</strong> Mercedes-Benz</li>
+              <li><strong>Model:</strong> G63 AMG</li>
+              <li><strong>Year:</strong> 2021</li>
+              <li><strong>Mileage:</strong> 17,615 km</li>
+              <li><strong>Engine:</strong> 4.0L V8 Biturbo</li>
+              <li><strong>Power:</strong> 585 HP</li>
+              <li><strong>Transmission:</strong> 9-speed automatic</li>
+              <li><strong>Drive:</strong> 4MATIC all-wheel drive</li>
+              <li><strong>Color:</strong> Black</li>
+              <li><strong>Features:</strong> BRABUS rims & kit, AMG Performance exhaust, Night package, Premium Plus package</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -308,13 +383,28 @@
           <div class="car-specs">
             <div class="spec-item"><i class="fas fa-calendar"></i><span>2023</span></div>
             <div class="spec-item"><i class="fas fa-tachometer-alt"></i><span>32,000 km</span></div>
-            <div class="spec-item"><i class="fas fa-gas-pump"></i><span>Petrol</span></div>
+            <div class="spec-item"><i class="fas fa-gas-pump"></i><span>Gasoline</span></div>
             <div class="spec-item"><i class="fas fa-cog"></i><span>Automatic</span></div>
           </div>
 
           <div class="car-actions">
             <a href="index.html#inquiry" class="action-btn primary-btn">Request Quote</a>
-            <a href="#" class="action-btn secondary-btn">View Details</a>
+            <button class="action-btn secondary-btn view-details-btn">View Details</button>
+          </div>
+          <div class="car-details" style="display:none;">
+            <h4>Detailed Specifications</h4>
+            <ul>
+              <li><strong>Make:</strong> Mercedes-Benz</li>
+              <li><strong>Model:</strong> GLC 300L</li>
+              <li><strong>Year:</strong> 2023</li>
+              <li><strong>Mileage:</strong> 32,000 km</li>
+              <li><strong>Engine:</strong> 2.0L Turbo I4</li>
+              <li><strong>Power:</strong> 255 HP</li>
+              <li><strong>Transmission:</strong> 9-speed automatic</li>
+              <li><strong>Drive:</strong> 4MATIC all-wheel drive</li>
+              <li><strong>Color:</strong> White</li>
+              <li><strong>Features:</strong> AMG Line, Panoramic sunroof, MBUX infotainment, Ambient lighting</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -337,18 +427,33 @@
 
         <div class="car-info">
           <h3 class="car-name">Audi S6</h3>
-          <div class="car-price">€15,270</div>
+          <div class="car-price">€15,300</div>
 
           <div class="car-specs">
             <div class="spec-item"><i class="fas fa-calendar"></i><span>2016</span></div>
             <div class="spec-item"><i class="fas fa-tachometer-alt"></i><span>170,000 km</span></div>
-            <div class="spec-item"><i class="fas fa-gas-pump"></i><span>Petrol</span></div>
+            <div class="spec-item"><i class="fas fa-gas-pump"></i><span>Gasoline</span></div>
             <div class="spec-item"><i class="fas fa-cog"></i><span>Automatic</span></div>
           </div>
 
           <div class="car-actions">
             <a href="index.html#inquiry" class="action-btn primary-btn">Request Quote</a>
-            <a href="#" class="action-btn secondary-btn">View Details</a>
+            <button class="action-btn secondary-btn view-details-btn">View Details</button>
+          </div>
+          <div class="car-details" style="display:none;">
+            <h4>Detailed Specifications</h4>
+            <ul>
+              <li><strong>Make:</strong> Audi</li>
+              <li><strong>Model:</strong> S6</li>
+              <li><strong>Year:</strong> 2016</li>
+              <li><strong>Mileage:</strong> 170,000 km</li>
+              <li><strong>Engine:</strong> 4.0L TFSI V8</li>
+              <li><strong>Power:</strong> 450 HP</li>
+              <li><strong>Transmission:</strong> 7-speed S tronic</li>
+              <li><strong>Drive:</strong> quattro all-wheel drive</li>
+              <li><strong>Color:</strong> Black</li>
+              <li><strong>Features:</strong> Sport differential, Audi drive select, Bang & Olufsen sound system, S sport seats</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -381,13 +486,28 @@
           <div class="car-specs">
             <div class="spec-item"><i class="fas fa-calendar"></i><span>2021</span></div>
             <div class="spec-item"><i class="fas fa-tachometer-alt"></i><span>32,000 km</span></div>
-            <div class="spec-item"><i class="fas fa-gas-pump"></i><span>Petrol</span></div>
+            <div class="spec-item"><i class="fas fa-gas-pump"></i><span>Gasoline</span></div>
             <div class="spec-item"><i class="fas fa-cog"></i><span>Automatic</span></div>
           </div>
 
           <div class="car-actions">
             <a href="index.html#inquiry" class="action-btn primary-btn">Request Quote</a>
-            <a href="#" class="action-btn secondary-btn">View Details</a>
+            <button class="action-btn secondary-btn view-details-btn">View Details</button>
+          </div>
+          <div class="car-details" style="display:none;">
+            <h4>Detailed Specifications</h4>
+            <ul>
+              <li><strong>Make:</strong> Mercedes-Benz</li>
+              <li><strong>Model:</strong> E 300L</li>
+              <li><strong>Year:</strong> 2021</li>
+              <li><strong>Mileage:</strong> 32,000 km</li>
+              <li><strong>Engine:</strong> 2.0L Turbo I4</li>
+              <li><strong>Power:</strong> 258 HP</li>
+              <li><strong>Transmission:</strong> 9G-TRONIC automatic</li>
+              <li><strong>Drive:</strong> Rear-wheel drive</li>
+              <li><strong>Color:</strong> Black</li>
+              <li><strong>Features:</strong> AMG Line, Ambient lighting, MBUX infotainment, Panoramic sunroof, Memory package</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -419,13 +539,440 @@
           <div class="car-specs">
             <div class="spec-item"><i class="fas fa-calendar"></i><span>2017</span></div>
             <div class="spec-item"><i class="fas fa-tachometer-alt"></i><span>172,000 km</span></div>
-            <div class="spec-item"><i class="fas fa-gas-pump"></i><span>Petrol</span></div>
+            <div class="spec-item"><i class="fas fa-gas-pump"></i><span>Gasoline</span></div>
             <div class="spec-item"><i class="fas fa-cog"></i><span>Automatic</span></div>
           </div>
 
           <div class="car-actions">
             <a href="index.html#inquiry" class="action-btn primary-btn">Request Quote</a>
-            <a href="#" class="action-btn secondary-btn">View Details</a>
+            <button class="action-btn secondary-btn view-details-btn">View Details</button>
+          </div>
+          <div class="car-details" style="display:none;">
+            <h4>Detailed Specifications</h4>
+            <ul>
+              <li><strong>Make:</strong> Mercedes-Benz</li>
+              <li><strong>Model:</strong> GLE400</li>
+              <li><strong>Year:</strong> 2017</li>
+              <li><strong>Mileage:</strong> 172,000 km</li>
+              <li><strong>Engine:</strong> 3.0L V6 Biturbo</li>
+              <li><strong>Power:</strong> 333 HP</li>
+              <li><strong>Transmission:</strong> 9G-TRONIC automatic</li>
+              <li><strong>Drive:</strong> 4MATIC all-wheel drive</li>
+              <li><strong>Color:</strong> White</li>
+              <li><strong>Features:</strong> AIRMATIC suspension, COMAND Online, Keyless-Go, Panoramic sunroof, Heated seats</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="car-card">
+        <div class="car-image car-image-slider">
+          <!-- Car Images -->
+          <img src="content/car_gallery/Porsche Macan/img1.jpg" class="active" alt="Front" loading="eager">
+          <img src="content/car_gallery/Porsche Macan/img2.jpg" alt="Side" loading="lazy">
+          <img src="content/car_gallery/Porsche Macan/img3.jpg" alt="Rear" loading="lazy">
+          <img src="content/car_gallery/Porsche Macan/img4.jpg" alt="Interior" loading="lazy">
+          <img src="content/car_gallery/Porsche Macan/img5.jpg" alt="Dashboard" loading="lazy">
+          <img src="content/car_gallery/Porsche Macan/img6.jpg" alt="Engine" loading="lazy">
+          <img src="content/car_gallery/Porsche Macan/img7.jpg" alt="Wheels" loading="lazy">
+          <img src="content/car_gallery/Porsche Macan/img8.jpg" alt="Detail" loading="lazy">
+          <img src="content/car_gallery/Porsche Macan/img9.jpg" alt="Profile" loading="lazy">
+          <img src="content/car_gallery/Porsche Macan/img10.jpg" alt="Angle" loading="lazy">          
+          <img src="content/car_gallery/Porsche Macan/img11.jpg" alt="Interior" loading="lazy">
+          <img src="content/car_gallery/Porsche Macan/img12.jpg" alt="Dashboard" loading="lazy">
+          <img src="content/car_gallery/Porsche Macan/img13.jpg" alt="Engine" loading="lazy">
+          <img src="content/car_gallery/Porsche Macan/img14.jpg" alt="Wheels" loading="lazy">
+          <img src="content/car_gallery/Porsche Macan/img15.jpg" alt="Detail" loading="lazy">
+          <img src="content/car_gallery/Porsche Macan/img16.jpg" alt="Profile" loading="lazy">
+          <img src="content/car_gallery/Porsche Macan/img17.jpg" alt="Angle" loading="lazy">
+
+          <!-- Navigation Controls -->
+          <button class="slider-arrow left" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+          <button class="slider-arrow right" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+          <button class="fullscreen-toggle" aria-label="Fullscreen"><i class="fas fa-expand"></i></button>
+          <div class="slider-dots"></div>
+        </div>
+
+        <div class="car-info">
+          <h3 class="car-name">Porsche Macan</h3>
+          <div class="car-price">€25,230</div>
+
+          <div class="car-specs">
+            <div class="spec-item"><i class="fas fa-calendar"></i><span>2020</span></div>
+            <div class="spec-item"><i class="fas fa-tachometer-alt"></i><span>97,000 km</span></div>
+            <div class="spec-item"><i class="fas fa-gas-pump"></i><span>Gasoline</span></div>
+            <div class="spec-item"><i class="fas fa-cog"></i><span>Automatic</span></div>
+          </div>
+
+          <div class="car-actions">
+            <a href="index.html#inquiry" class="action-btn primary-btn">Request Quote</a>
+            <button class="action-btn secondary-btn view-details-btn">View Details</button>
+          </div>
+          <div class="car-details" style="display:none;">
+            <h4>Detailed Specifications</h4>
+            <p>Buy this Porsche Macan Base 2020-model in Dubai, UAE for AED 109,000....</p>
+            <p>This car has 4 doors and seats up to 5 passengers.</p>
+            <ul>
+              <li><strong>Model:</strong> Porsche Macan Base 2020</li>
+              <li><strong>Price:</strong> AED 109,000</li>
+              <li><strong>Model year:</strong> 2020</li>
+              <li><strong>Mileage:</strong> 97,000 km</li>
+              <li><strong>Specifications:</strong>
+                <ul>
+                  <li>3D Surround Camera</li>
+                  <li>Memory Front Seats</li>
+                  <li>Parking Assist</li>
+                  <li>Digital HUD</li>
+                  <li>Parking Sensors</li>
+                  <li>Steering Assist</li>
+                  <li>Tinted Windows</li>
+                </ul>
+              </li>
+            </ul>
+            <p><strong>Why buy the Porsche Macan Base?</strong></p>
+            <p>The Porsche Macan Base SUV is listed by Verona Cars Trading for Used Cars. This 4 door SUV fits 5 passengers and 3 medium-sized bag(s).</p>
+            <p>Features include 3D Surround Camera, Memory Front Seats, Parking Assist, Digital HUD, Parking Sensors, Steering Assist, Tinted Windows and more.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="car-card">
+        <div class="car-image car-image-slider">
+          <!-- Car Images -->
+          <img src="content/car_gallery/BMW 3 Series 340i xDrive/img1.jpg" class="active" alt="Front" loading="eager">
+          <img src="content/car_gallery/BMW 3 Series 340i xDrive/img2.jpg" alt="Side" loading="lazy">
+          <img src="content/car_gallery/BMW 3 Series 340i xDrive/img3.jpg" alt="Rear" loading="lazy">
+          <img src="content/car_gallery/BMW 3 Series 340i xDrive/img4.jpg" alt="Interior" loading="lazy">
+          <img src="content/car_gallery/BMW 3 Series 340i xDrive/img5.jpg" alt="Dashboard" loading="lazy">
+          <img src="content/car_gallery/BMW 3 Series 340i xDrive/img6.jpg" alt="Engine" loading="lazy">
+          <img src="content/car_gallery/BMW 3 Series 340i xDrive/img7.jpg" alt="Wheels" loading="lazy">
+          <img src="content/car_gallery/BMW 3 Series 340i xDrive/img8.jpg" alt="Detail" loading="lazy">
+          <img src="content/car_gallery/BMW 3 Series 340i xDrive/img9.jpg" alt="Profile" loading="lazy">
+          <img src="content/car_gallery/BMW 3 Series 340i xDrive/img10.jpg" alt="Angle" loading="lazy">          
+          <img src="content/car_gallery/BMW 3 Series 340i xDrive/img11.jpg" alt="Interior" loading="lazy">
+          <img src="content/car_gallery/BMW 3 Series 340i xDrive/img12.jpg" alt="Dashboard" loading="lazy">
+          <img src="content/car_gallery/BMW 3 Series 340i xDrive/img13.jpg" alt="Engine" loading="lazy">
+          <img src="content/car_gallery/BMW 3 Series 340i xDrive/img14.jpg" alt="Wheels" loading="lazy">
+          <img src="content/car_gallery/BMW 3 Series 340i xDrive/img15.jpg" alt="Detail" loading="lazy">
+          <img src="content/car_gallery/BMW 3 Series 340i xDrive/img16.jpg" alt="Profile" loading="lazy">
+
+          <!-- Navigation Controls -->
+          <button class="slider-arrow left" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+          <button class="slider-arrow right" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+          <button class="fullscreen-toggle" aria-label="Fullscreen"><i class="fas fa-expand"></i></button>
+          <div class="slider-dots"></div>
+        </div>
+
+        <div class="car-info">
+          <h3 class="car-name">BMW 3 Series 340i xDrive</h3>
+          <div class="car-price">€46,000</div>
+
+          <div class="car-specs">
+            <div class="spec-item"><i class="fas fa-calendar"></i><span>2023</span></div>
+            <div class="spec-item"><i class="fas fa-tachometer-alt"></i><span>28,600 km</span></div>
+            <div class="spec-item"><i class="fas fa-gas-pump"></i><span>Gasoline</span></div>
+            <div class="spec-item"><i class="fas fa-cog"></i><span>Automatic</span></div>
+          </div>
+
+          <div class="car-actions">
+            <a href="index.html#inquiry" class="action-btn primary-btn">Request Quote</a>
+            <button class="action-btn secondary-btn view-details-btn">View Details</button>
+          </div>
+          <div class="car-details" style="display:none;">
+            <h4>Detailed Specifications</h4>
+            <p>Buy this BMW 3 Series 340i xDrive 2023-model in Dubai, UAE for AED 199,000....</p>
+            <p>This car has 4 doors and seats up to 5 passengers.</p>
+            <ul>
+              <li><strong>Model:</strong> BMW 3 Series 340i xDrive 2023</li>
+              <li><strong>Price:</strong> AED 199,000</li>
+              <li><strong>Model year:</strong> 2023</li>
+              <li><strong>Mileage:</strong> 28,600 km</li>
+              <li><strong>Specifications:</strong>
+                <ul>
+                  <li>Panoromic Sunroof</li>
+                </ul>
+              </li>
+            </ul>
+            <p><strong>Why buy the BMW 3 Series 340i xDrive?</strong></p>
+            <p>The BMW 3-series was for many years the benchmark of the sports-sedan segment. For the 2016 model year, the 3-series gets a midterm facelift that goes beyond the cosmetic. The Sport Line aesthetic treatment now comes standard on everything but 320i models; it was previously at least a $1700 option. The Luxury Line and M Sport upgrades continue to be available, too. On top of that, the optional Premium package for the 328i and 328d now includes the aforementioned LED headlights, in addition to Comfort Access, satellite radio, and a sunroof; this package is standard on six-cylinder cars.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="car-card">
+        <div class="car-image car-image-slider">
+          <!-- Car Images -->
+          <img src="content/car_gallery/Tesla Model 3/img1.jpg" class="active" alt="Front" loading="eager">
+          <img src="content/car_gallery/Tesla Model 3/img2.jpg" alt="Side" loading="lazy">
+          <img src="content/car_gallery/Tesla Model 3/img3.jpg" alt="Rear" loading="lazy">
+          <img src="content/car_gallery/Tesla Model 3/img4.jpg" alt="Interior" loading="lazy">
+          <img src="content/car_gallery/Tesla Model 3/img5.jpg" alt="Dashboard" loading="lazy">
+          <img src="content/car_gallery/Tesla Model 3/img6.jpg" alt="Engine" loading="lazy">
+          <img src="content/car_gallery/Tesla Model 3/img7.jpg" alt="Wheels" loading="lazy">
+          <img src="content/car_gallery/Tesla Model 3/img8.jpg" alt="Detail" loading="lazy">
+          <img src="content/car_gallery/Tesla Model 3/img9.jpg" alt="Profile" loading="lazy">
+          <img src="content/car_gallery/Tesla Model 3/img10.jpg" alt="Angle" loading="lazy">          
+          <img src="content/car_gallery/Tesla Model 3/img11.jpg" alt="Interior" loading="lazy">
+          <img src="content/car_gallery/Tesla Model 3/img12.jpg" alt="Dashboard" loading="lazy">
+          <img src="content/car_gallery/Tesla Model 3/img13.jpg" alt="Engine" loading="lazy">
+          <img src="content/car_gallery/Tesla Model 3/img14.jpg" alt="Wheels" loading="lazy">
+          <img src="content/car_gallery/Tesla Model 3/img15.jpg" alt="Detail" loading="lazy">
+          <img src="content/car_gallery/Tesla Model 3/img16.jpg" alt="Profile" loading="lazy">
+
+          <!-- Navigation Controls -->
+          <button class="slider-arrow left" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+          <button class="slider-arrow right" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+          <button class="fullscreen-toggle" aria-label="Fullscreen"><i class="fas fa-expand"></i></button>
+          <div class="slider-dots"></div>
+        </div>
+
+        <div class="car-info">
+          <h3 class="car-name">Tesla Model 3</h3>
+          <div class="car-price">€31,300</div>
+
+          <div class="car-specs">
+            <div class="spec-item"><i class="fas fa-calendar"></i><span>2024</span></div>
+            <div class="spec-item"><i class="fas fa-tachometer-alt"></i><span>19,000 km</span></div>
+            <div class="spec-item"><i class="fas fa-gas-pump"></i><span>Electric</span></div>
+            <div class="spec-item"><i class="fas fa-cog"></i><span>Automatic</span></div>
+          </div>
+
+          <div class="car-actions">
+            <a href="index.html#inquiry" class="action-btn primary-btn">Request Quote</a>
+            <button class="action-btn secondary-btn view-details-btn">View Details</button>
+          </div>
+          <div class="car-details" style="display:none;">
+            <h4>Detailed Specifications</h4>
+            <p>Buy this Tesla Model 3 Long Range 2024-model in Dubai, UAE  for AED 135,000....</p>
+            <p>This car has 4 doors and seats up to 5 passengers.</p>
+            <ul>
+              <li><strong>Model:</strong> Tesla Model 3 Long Range 2024</li>
+              <li><strong>Price:</strong> AED 135,000</li>
+              <li><strong>Model year:</strong> 2024</li>
+              <li><strong>Mileage:</strong> 19,000 km</li>
+              <li><strong>Specifications:</strong>
+                <ul>
+                  <li>3D Surround Camera</li>
+                  <li>Memory Front Seats</li>
+                  <li>Parking Assist</li>
+                  <li>Digital HUD</li>
+                  <li>Temperature Controlled Seats</li>
+                  <li>Built-in GPS</li>
+                  <li>Panoromic Sunroof</li>
+                  <li>Parking Sensors</li>
+                  <li>Steering Assist</li>
+                  <li>Tinted Windows</li>
+                </ul>
+              </li>
+            </ul>
+            <p><strong>Why buy the Tesla Model 3 Long Range?</strong></p>
+            <p>The Tesla Model 3 Long Range Electric is listed by Verona Cars Trading for Used Cars. This 4 door Electric fits 5 passengers and 2 medium-sized bag(s).</p>
+            <p>Features include 3D Surround Camera, Memory Front Seats, Parking Assist, Digital HUD, Temperature Controlled Seats, Built-in GPS, Panoromic Sunroof, Parking Sensors, Steering Assist, Tinted Windows and more.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="car-card">
+        <div class="car-image car-image-slider">
+          <!-- Car Images -->
+          <img src="content/car_gallery/BMW M4 Competition/img1.jpg" class="active" alt="Front" loading="eager">
+          <img src="content/car_gallery/BMW M4 Competition/img2.jpg" alt="Side" loading="lazy">
+          <img src="content/car_gallery/BMW M4 Competition/img3.jpg" alt="Rear" loading="lazy">
+          <img src="content/car_gallery/BMW M4 Competition/img4.jpg" alt="Interior" loading="lazy">
+          <img src="content/car_gallery/BMW M4 Competition/img5.jpg" alt="Dashboard" loading="lazy">
+          <img src="content/car_gallery/BMW M4 Competition/img6.jpg" alt="Engine" loading="lazy">
+          <img src="content/car_gallery/BMW M4 Competition/img7.jpg" alt="Wheels" loading="lazy">
+          <img src="content/car_gallery/BMW M4 Competition/img8.jpg" alt="Detail" loading="lazy">
+          <img src="content/car_gallery/BMW M4 Competition/img9.jpg" alt="Profile" loading="lazy">
+          <img src="content/car_gallery/BMW M4 Competition/img10.jpg" alt="Angle" loading="lazy">          
+          <img src="content/car_gallery/BMW M4 Competition/img11.jpg" alt="Interior" loading="lazy">
+          <img src="content/car_gallery/BMW M4 Competition/img12.jpg" alt="Dashboard" loading="lazy">
+          <img src="content/car_gallery/BMW M4 Competition/img13.jpg" alt="Engine" loading="lazy">
+          <img src="content/car_gallery/BMW M4 Competition/img14.jpg" alt="Wheels" loading="lazy">
+          <img src="content/car_gallery/BMW M4 Competition/img15.jpg" alt="Detail" loading="lazy">
+          <img src="content/car_gallery/BMW M4 Competition/img16.jpg" alt="Profile" loading="lazy">
+          <img src="content/car_gallery/BMW M4 Competition/img16.jpg" alt="Profile" loading="lazy">
+          <img src="content/car_gallery/BMW M4 Competition/img16.jpg" alt="Profile" loading="lazy">
+          <img src="content/car_gallery/BMW M4 Competition/img16.jpg" alt="Profile" loading="lazy">
+          <img src="content/car_gallery/BMW M4 Competition/img16.jpg" alt="Profile" loading="lazy">
+          <img src="content/car_gallery/BMW M4 Competition/img16.jpg" alt="Profile" loading="lazy">
+
+          <!-- Navigation Controls -->
+          <button class="slider-arrow left" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+          <button class="slider-arrow right" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+          <button class="fullscreen-toggle" aria-label="Fullscreen"><i class="fas fa-expand"></i></button>
+          <div class="slider-dots"></div>
+        </div>
+
+        <div class="car-info">
+          <h3 class="car-name">BMW M4 Competition</h3>
+          <div class="car-price">€62,400</div>
+
+          <div class="car-specs">
+            <div class="spec-item"><i class="fas fa-calendar"></i><span>2021</span></div>
+            <div class="spec-item"><i class="fas fa-tachometer-alt"></i><span>37,000 km</span></div>
+            <div class="spec-item"><i class="fas fa-gas-pump"></i><span>Gasoline</span></div>
+            <div class="spec-item"><i class="fas fa-cog"></i><span>Automatic</span></div>
+          </div>
+
+          <div class="car-actions">
+            <a href="index.html#inquiry" class="action-btn primary-btn">Request Quote</a>
+            <button class="action-btn secondary-btn view-details-btn">View Details</button>
+          </div>
+          <div class="car-details" style="display:none;">
+            <h4>Detailed Specifications</h4>
+            <p>Buy this BMW M4 Competition 2021-model in Dubai, UAE  for AED 269,000....</p>
+            <p>This car has 2 doors and seats up to 5 passengers.</p>
+            <ul>
+              <li><strong>Model:</strong> BMW M4 Competition 2021</li>
+              <li><strong>Price:</strong> AED 269,000</li>
+              <li><strong>Model year:</strong> 2021</li>
+              <li><strong>Mileage:</strong> 37,000 km</li>
+              <li><strong>Specifications:</strong>
+                <ul>
+                  <li>Steering Assist</li>
+                </ul>
+              </li>
+            </ul>
+            <p><strong>Why buy the BMW M4 Competition?</strong></p>
+            <p>The BMW M4 Competition SUV is listed by Verona Cars Trading for Used Cars. This 4 door SUV fits 5 passengers and 3 medium-sized bag(s).</p>
+            <p>Features include Steering Assist and more.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="car-card">
+        <div class="car-image car-image-slider">
+          <!-- Car Images -->
+          <img src="content/car_gallery/Mercedes Benz AMG E53/img1.jpg" class="active" alt="Front" loading="eager">
+          <img src="content/car_gallery/Mercedes Benz AMG E53/img2.jpg" alt="Side" loading="lazy">
+          <img src="content/car_gallery/Mercedes Benz AMG E53/img3.jpg" alt="Rear" loading="lazy">
+          <img src="content/car_gallery/Mercedes Benz AMG E53/img4.jpg" alt="Interior" loading="lazy">
+          <img src="content/car_gallery/Mercedes Benz AMG E53/img5.jpg" alt="Dashboard" loading="lazy">
+          <img src="content/car_gallery/Mercedes Benz AMG E53/img6.jpg" alt="Engine" loading="lazy">
+          <img src="content/car_gallery/Mercedes Benz AMG E53/img7.jpg" alt="Wheels" loading="lazy">
+          <img src="content/car_gallery/Mercedes Benz AMG E53/img8.jpg" alt="Detail" loading="lazy">
+          <img src="content/car_gallery/Mercedes Benz AMG E53/img9.jpg" alt="Profile" loading="lazy">
+          <img src="content/car_gallery/Mercedes Benz AMG E53/img10.jpg" alt="Angle" loading="lazy">          
+          <img src="content/car_gallery/Mercedes Benz AMG E53/img11.jpg" alt="Interior" loading="lazy">
+          <img src="content/car_gallery/Mercedes Benz AMG E53/img12.jpg" alt="Dashboard" loading="lazy">
+          <img src="content/car_gallery/Mercedes Benz AMG E53/img13.jpg" alt="Engine" loading="lazy">
+          <img src="content/car_gallery/Mercedes Benz AMG E53/img14.jpg" alt="Wheels" loading="lazy">
+          <img src="content/car_gallery/Mercedes Benz AMG E53/img15.jpg" alt="Detail" loading="lazy">
+
+          <!-- Navigation Controls -->
+          <button class="slider-arrow left" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+          <button class="slider-arrow right" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+          <button class="fullscreen-toggle" aria-label="Fullscreen"><i class="fas fa-expand"></i></button>
+          <div class="slider-dots"></div>
+        </div>
+
+        <div class="car-info">
+          <h3 class="car-name">Mercedes Benz AMG E53</h3>
+          <div class="car-price">€25,300</div>
+
+          <div class="car-specs">
+            <div class="spec-item"><i class="fas fa-calendar"></i><span>2020</span></div>
+            <div class="spec-item"><i class="fas fa-tachometer-alt"></i><span>113,000 km</span></div>
+            <div class="spec-item"><i class="fas fa-gas-pump"></i><span>Gasoline</span></div>
+            <div class="spec-item"><i class="fas fa-cog"></i><span>Automatic</span></div>
+          </div>
+
+          <div class="car-actions">
+            <a href="index.html#inquiry" class="action-btn primary-btn">Request Quote</a>
+            <button class="action-btn secondary-btn view-details-btn">View Details</button>
+          </div>
+          <div class="car-details" style="display:none;">
+            <h4>Detailed Specifications</h4>
+            <p>Buy this Mercedes Benz AMG E53 2020-model in Dubai, UAE  for AED 109,000....</p>
+            <p>This car has 2 doors and seats up to 4 passengers.</p>
+            <ul>
+              <li><strong>Model:</strong> Mercedes Benz AMG E53 2020</li>
+              <li><strong>Price:</strong> AED 109,000</li>
+              <li><strong>Model year:</strong> 2020</li>
+              <li><strong>Mileage:</strong> 113,000 km</li>
+              <li><strong>Specifications:</strong>
+                <ul>
+                  <li>3D Surround Camera</li>
+                  <li>Memory Front Seats</li>
+                  <li>Parking Assist</li>
+                  <li>Digital HUD</li>
+                  <li>Temperature Controlled Seats</li>
+                  <li>Built-in GPS</li>
+                  <li>Panoromic Sunroof</li>
+                  <li>Parking Sensors</li>
+                  <li>Steering Assist</li>
+                  <li>Tinted Windows</li>
+                </ul>
+              </li>
+            </ul>
+            <p><strong>Why buy the Mercedes Benz AMG E53?</strong></p>
+            <p>The Mercedes Benz AMG E53 Coupe is listed by Verona Cars Trading for Used Cars. This 2 door Coupe fits 4 passengers and 2 medium-sized bag(s).</p>
+            <p>Features include 3D Surround Camera, Memory Front Seats, Parking Assist, Digital HUD, Temperature Controlled Seats, Built-in GPS, Panoromic Sunroof, Parking Sensors, Steering Assist, Tinted Windows and more.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="car-card">
+        <div class="car-image car-image-slider">
+          <!-- Car Images -->
+          <img src="content/car_gallery/BMW M5 Standard/img1.jpg" class="active" alt="Front" loading="eager">
+          <img src="content/car_gallery/BMW M5 Standard/img2.jpg" alt="Side" loading="lazy">
+          <img src="content/car_gallery/BMW M5 Standard/img3.jpg" alt="Rear" loading="lazy">
+          <img src="content/car_gallery/BMW M5 Standard/img4.jpg" alt="Interior" loading="lazy">
+          <img src="content/car_gallery/BMW M5 Standard/img5.jpg" alt="Dashboard" loading="lazy">
+          <img src="content/car_gallery/BMW M5 Standard/img6.jpg" alt="Engine" loading="lazy">
+          <img src="content/car_gallery/BMW M5 Standard/img7.jpg" alt="Wheels" loading="lazy">
+          <img src="content/car_gallery/BMW M5 Standard/img8.jpg" alt="Detail" loading="lazy">
+          <img src="content/car_gallery/BMW M5 Standard/img9.jpg" alt="Profile" loading="lazy">
+          <img src="content/car_gallery/BMW M5 Standard/img10.jpg" alt="Angle" loading="lazy">          
+          <img src="content/car_gallery/BMW M5 Standard/img11.jpg" alt="Interior" loading="lazy">
+          <img src="content/car_gallery/BMW M5 Standard/img12.jpg" alt="Dashboard" loading="lazy">
+          <img src="content/car_gallery/BMW M5 Standard/img13.jpg" alt="Engine" loading="lazy">
+          <img src="content/car_gallery/BMW M5 Standard/img14.jpg" alt="Wheels" loading="lazy">
+          <img src="content/car_gallery/BMW M5 Standard/img15.jpg" alt="Detail" loading="lazy">
+          <img src="content/car_gallery/BMW M5 Standard/img16.jpg" alt="Detail" loading="lazy">
+
+          <!-- Navigation Controls -->
+          <button class="slider-arrow left" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+          <button class="slider-arrow right" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+          <button class="fullscreen-toggle" aria-label="Fullscreen"><i class="fas fa-expand"></i></button>
+          <div class="slider-dots"></div>
+        </div>
+
+        <div class="car-info">
+          <h3 class="car-name">BMW M5 Standard</h3>
+          <div class="car-price">€55,400</div>
+
+          <div class="car-specs">
+            <div class="spec-item"><i class="fas fa-calendar"></i><span>2019</span></div>
+            <div class="spec-item"><i class="fas fa-tachometer-alt"></i><span>62,000 km</span></div>
+            <div class="spec-item"><i class="fas fa-gas-pump"></i><span>Gasoline</span></div>
+            <div class="spec-item"><i class="fas fa-cog"></i><span>Automatic</span></div>
+          </div>
+
+          <div class="car-actions">
+            <a href="index.html#inquiry" class="action-btn primary-btn">Request Quote</a>
+            <button class="action-btn secondary-btn view-details-btn">View Details</button>
+          </div>
+          <div class="car-details" style="display:none;">
+            <h4>Detailed Specifications</h4>
+            <p>Buy this BMW M5 Standard 2019-model in Dubai, UAE  for AED 239,000....</p>
+            <p>This car has 4 doors and seats up to 5 passengers.</p>
+            <ul>
+              <li><strong>Model:</strong> BMW M5 Standard 2019</li>
+              <li><strong>Price:</strong> AED 239,000</li>
+              <li><strong>Model year:</strong> 2019</li>
+              <li><strong>Mileage:</strong> 62,000 km</li>
+              <li><strong>Specifications:</strong>
+                <ul>
+                  <li>Steering Assist</li>
+                </ul>
+              </li>
+            </ul>
+            <p><strong>Why buy the BMW M5 Standard?</strong></p>
+            <p>The BMW M5 Standard Sports Car is listed by Verona Cars Trading for Used Cars. This 4 door Sports Car fits 5 passengers and 2 medium-sized bag(s).</p>
+            <p>Features include Steering Assist and more.</p>
           </div>
         </div>
       </div>
@@ -441,6 +988,16 @@
       <button class="slider-arrow left" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
       <button class="slider-arrow right" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
       <div class="slider-dots"></div>
+    </div>
+  </div>
+
+  <!-- ===== DETAILS POPUP ===== -->
+  <div class="details-popup" id="details-popup">
+    <div class="popup-content">
+      <button class="popup-close" aria-label="Close"><i class="fas fa-times"></i></button>
+      <div class="popup-body">
+        DISPLAYED DETAILS
+      </div>
     </div>
   </div>
 
@@ -473,6 +1030,44 @@
   </footer>
 
   <!-- ===== SCRIPTS ===== -->
+  <script>
+    // Details Popup Functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const detailsPopup = document.getElementById('details-popup');
+      const popupClose = detailsPopup.querySelector('.popup-close');
+      const popupBody = detailsPopup.querySelector('.popup-body');
+      
+      // Open popup when clicking "View Details"
+      document.querySelectorAll('.view-details-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const details = this.closest('.car-card').querySelector('.car-details');
+          popupBody.innerHTML = details.innerHTML;
+          detailsPopup.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        });
+      });
+      
+      // Close popup when clicking close button or outside
+      popupClose.addEventListener('click', closeDetailsPopup);
+      detailsPopup.addEventListener('click', function(e) {
+        if(e.target === detailsPopup) {
+          closeDetailsPopup();
+        }
+      });
+      
+      // Close with ESC key
+      document.addEventListener('keydown', function(e) {
+        if(e.key === 'Escape' && detailsPopup.classList.contains('active')) {
+          closeDetailsPopup();
+        }
+      });
+      
+      function closeDetailsPopup() {
+        detailsPopup.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
   <script>
@@ -590,6 +1185,13 @@
       let current = 0;
       let slides = [];
       let dots = [];
+
+      // Close fullscreen when clicking outside the slider box
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+          closeFullscreen();
+        }
+      });
 
       // Helper to show slide in a container
       function showSlide(i, container, slidesArr, dotsArr) {
